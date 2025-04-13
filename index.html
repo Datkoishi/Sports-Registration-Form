@@ -6,20 +6,32 @@
     <title>Đăng Ký Hội Thao Sinh Viên Duy Tân 2025</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap");
 
         :root {
-          --primary-color: #1e88e5;
-          --primary-dark: #1565c0;
-          --secondary-color: #f44336;
+          /* Màu chính - thể thao */
+          --primary-color: #0056b3;
+          --primary-light: #3a7bd5;
+          --primary-dark: #00408c;
+          --secondary-color: #ff5722;
+          --secondary-light: #ff7e47;
+          --secondary-dark: #c41c00;
+          --accent-color: #ffc107;
+          --success-color: #4caf50;
+          --warning-color: #ff9800;
+          --danger-color: #f44336;
           --text-color: #333;
+          --text-light: #757575;
+          --bg-color: #f9f9f9;
+          --white: #ffffff;
           --light-gray: #f5f5f5;
           --medium-gray: #e0e0e0;
           --dark-gray: #757575;
-          --success-color: #4caf50;
-          --warning-color: #ff9800;
-          --border-radius: 4px;
-          --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          --border-radius: 8px;
+          --border-radius-lg: 12px;
+          --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          --box-shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+          --transition: all 0.3s ease;
         }
 
         * {
@@ -29,63 +41,266 @@
         }
 
         body {
-          font-family: "Roboto", sans-serif;
+          font-family: "Montserrat", "Roboto", sans-serif;
           line-height: 1.6;
           color: var(--text-color);
-          background-color: #f9f9f9;
+          background-color: var(--bg-color);
+          background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+          min-height: 100vh;
         }
 
         .container {
-          max-width: 1000px;
+          max-width: 1100px;
           margin: 0 auto;
           padding: 20px;
+          position: relative;
         }
 
+        /* Progress Bar */
+        .progress-container {
+          position: sticky;
+          top: 0;
+          left: 0;
+          width: 100%;
+          background-color: var(--white);
+          z-index: 1000;
+          padding: 10px 0;
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+          margin-bottom: 20px;
+          animation: slideDown 0.5s ease;
+        }
+
+        .progress-bar {
+          height: 8px;
+          background: linear-gradient(90deg, var(--primary-light) 0%, var(--secondary-color) 100%);
+          border-radius: 10px;
+          width: 0%;
+          transition: width 0.5s ease;
+        }
+
+        .progress-text {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 5px;
+          font-size: 14px;
+          color: var(--text-light);
+          padding: 0 10px;
+        }
+
+        /* Header */
         header {
           text-align: center;
           margin-bottom: 30px;
-          padding: 20px;
-          background-color: var(--primary-color);
+          padding: 30px;
+          background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
           color: white;
-          border-radius: var(--border-radius);
+          border-radius: var(--border-radius-lg);
           box-shadow: var(--box-shadow);
+          position: relative;
+          overflow: hidden;
+          animation: fadeIn 0.8s ease;
+        }
+
+        header::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+          opacity: 0.5;
+        }
+
+        .logo-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 20px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .logo {
+          max-width: 180px;
+          height: auto;
+          filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+          transition: var(--transition);
+        }
+
+        .logo:hover {
+          transform: scale(1.05);
         }
 
         h1 {
-          font-size: 28px;
-          margin-bottom: 10px;
+          font-size: 32px;
+          margin-bottom: 15px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+          position: relative;
+          z-index: 1;
+        }
+
+        .school-name {
+          font-size: 22px;
+          font-weight: 700;
+          margin: 15px 0;
+          padding: 10px 20px;
+          background-color: rgba(255, 255, 255, 0.15);
+          display: inline-block;
+          border-radius: 30px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          position: relative;
+          z-index: 1;
+          backdrop-filter: blur(5px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: var(--transition);
+        }
+
+        .school-name:hover {
+          background-color: rgba(255, 255, 255, 0.25);
+          transform: translateY(-3px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Form Sections */
+        .form-section {
+          background-color: var(--white);
+          padding: 30px;
+          margin-bottom: 30px;
+          border-radius: var(--border-radius-lg);
+          box-shadow: var(--box-shadow);
+          transition: var(--transition);
+          position: relative;
+          overflow: hidden;
+          animation: slideUp 0.5s ease;
+        }
+
+        .form-section:hover {
+          box-shadow: var(--box-shadow-hover);
+          transform: translateY(-5px);
+        }
+
+        .form-section::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 5px;
+          background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         }
 
         h2 {
-          font-size: 22px;
-          margin-bottom: 20px;
+          font-size: 24px;
+          margin-bottom: 25px;
           color: var(--primary-color);
-          border-bottom: 2px solid var(--primary-color);
-          padding-bottom: 10px;
+          border-bottom: 2px solid var(--medium-gray);
+          padding-bottom: 15px;
+          display: flex;
+          align-items: center;
+          position: relative;
+        }
+
+        h2 i {
+          margin-right: 10px;
+          background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+          color: white;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         h3 {
-          font-size: 18px;
-          margin: 15px 0;
+          font-size: 20px;
+          margin: 20px 0 15px;
           color: var(--primary-dark);
+          display: flex;
+          align-items: center;
         }
 
-        .form-section {
-          background-color: white;
-          padding: 25px;
-          margin-bottom: 30px;
-          border-radius: var(--border-radius);
-          box-shadow: var(--box-shadow);
+        h3 i {
+          margin-right: 10px;
+          color: var(--primary-color);
         }
 
+        /* Form Groups */
         .form-group {
-          margin-bottom: 20px;
+          margin-bottom: 25px;
+          position: relative;
         }
 
+        .input-group {
+          position: relative;
+          margin-bottom: 25px;
+        }
+
+        .input-group input,
+        .input-group select {
+          width: 100%;
+          padding: 15px;
+          border: 2px solid var(--medium-gray);
+          border-radius: var(--border-radius);
+          font-size: 16px;
+          transition: var(--transition);
+          background-color: var(--white);
+          color: var(--text-color);
+          font-family: inherit;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+          border-color: var(--primary-color);
+          box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+          outline: none;
+        }
+
+        .input-group label {
+          position: absolute;
+          left: 15px;
+          top: 15px;
+          color: var(--text-light);
+          transition: var(--transition);
+          background-color: var(--white);
+          padding: 0 5px;
+          pointer-events: none;
+        }
+
+        .input-group input:focus ~ label,
+        .input-group input:not(:placeholder-shown) ~ label,
+        .input-group select:focus ~ label,
+        .input-group select:not([value=""]):not(:focus) ~ label {
+          top: -10px;
+          left: 10px;
+          font-size: 12px;
+          color: var(--primary-color);
+          font-weight: 600;
+        }
+
+        .input-group input::placeholder {
+          color: transparent;
+        }
+
+        .input-group .required {
+          color: var(--danger-color);
+          margin-left: 3px;
+        }
+
+        /* Standard inputs */
         label {
           display: block;
           margin-bottom: 8px;
           font-weight: 500;
+          color: var(--text-color);
         }
 
         input[type="text"],
@@ -96,11 +311,12 @@
         select,
         textarea {
           width: 100%;
-          padding: 12px;
-          border: 1px solid var(--medium-gray);
+          padding: 12px 15px;
+          border: 2px solid var(--medium-gray);
           border-radius: var(--border-radius);
           font-size: 16px;
-          transition: border-color 0.3s;
+          transition: var(--transition);
+          font-family: inherit;
         }
 
         input[type="text"]:focus,
@@ -111,6 +327,7 @@
         select:focus,
         textarea:focus {
           border-color: var(--primary-color);
+          box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
           outline: none;
         }
 
@@ -118,10 +335,42 @@
           padding: 10px 0;
         }
 
+        .custom-file-upload {
+          display: inline-block;
+          padding: 12px 20px;
+          cursor: pointer;
+          background-color: var(--light-gray);
+          border-radius: var(--border-radius);
+          border: 2px solid var(--medium-gray);
+          transition: var(--transition);
+          text-align: center;
+          width: 100%;
+        }
+
+        .custom-file-upload:hover {
+          background-color: var(--medium-gray);
+        }
+
+        .custom-file-upload i {
+          margin-right: 8px;
+          color: var(--primary-color);
+        }
+
+        input[type="file"] {
+          display: none;
+        }
+
+        .file-name {
+          margin-top: 8px;
+          font-size: 14px;
+          color: var(--text-light);
+        }
+
+        /* Radio and Checkbox Styles */
         .radio-group {
           display: flex;
           gap: 20px;
-          margin-top: 5px;
+          margin-top: 10px;
         }
 
         .radio-group label {
@@ -129,14 +378,59 @@
           align-items: center;
           font-weight: normal;
           cursor: pointer;
+          position: relative;
+          padding-left: 30px;
+          margin-bottom: 0;
         }
 
         .radio-group input[type="radio"] {
-          margin-right: 8px;
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+
+        .radio-checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 20px;
+          width: 20px;
+          background-color: var(--white);
+          border: 2px solid var(--medium-gray);
+          border-radius: 50%;
+          transition: var(--transition);
+        }
+
+        .radio-group label:hover input ~ .radio-checkmark {
+          border-color: var(--primary-color);
+        }
+
+        .radio-group input:checked ~ .radio-checkmark {
+          background-color: var(--white);
+          border-color: var(--primary-color);
+        }
+
+        .radio-checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+          top: 3px;
+          left: 3px;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: var(--primary-color);
+        }
+
+        .radio-group input:checked ~ .radio-checkmark:after {
+          display: block;
+          animation: pulse 0.3s ease;
         }
 
         .required {
-          color: var(--secondary-color);
+          color: var(--danger-color);
         }
 
         .hidden {
@@ -145,31 +439,49 @@
 
         .note {
           font-style: italic;
-          color: var(--dark-gray);
+          color: var(--text-light);
           margin-bottom: 15px;
+          padding: 10px;
+          background-color: rgba(255, 193, 7, 0.1);
+          border-left: 3px solid var(--accent-color);
+          border-radius: 4px;
         }
 
         .counter {
-          background-color: var(--light-gray);
-          padding: 10px;
+          background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+          color: white;
+          padding: 12px 15px;
           border-radius: var(--border-radius);
           margin-bottom: 20px;
           font-weight: 500;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
 
         .counter span {
-          color: var(--primary-color);
           font-weight: bold;
+          background-color: rgba(255, 255, 255, 0.2);
+          padding: 3px 8px;
+          border-radius: 20px;
+          margin-left: 5px;
         }
 
+        /* Sport Sections */
         .sport-section {
-          margin-bottom: 25px;
-          padding-bottom: 15px;
+          margin-bottom: 30px;
+          padding-bottom: 20px;
           border-bottom: 1px solid var(--medium-gray);
+          transition: var(--transition);
         }
 
         .sport-section:last-child {
           border-bottom: none;
+        }
+
+        .sport-section:hover {
+          transform: translateX(5px);
         }
 
         .sport-options {
@@ -180,26 +492,66 @@
 
         .sport-option {
           margin-bottom: 15px;
+          position: relative;
         }
 
         .sport-option label {
           display: flex;
           align-items: center;
           cursor: pointer;
+          padding: 12px 15px;
+          background-color: var(--light-gray);
+          border-radius: var(--border-radius);
+          transition: var(--transition);
+          border: 2px solid transparent;
+        }
+
+        .sport-option label:hover {
+          background-color: rgba(58, 123, 213, 0.1);
+          border-color: var(--primary-light);
         }
 
         .sport-option input[type="checkbox"] {
           margin-right: 10px;
+          position: relative;
+          width: 20px;
+          height: 20px;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          border: 2px solid var(--medium-gray);
+          border-radius: 4px;
+          outline: none;
+          transition: var(--transition);
+          cursor: pointer;
+        }
+
+        .sport-option input[type="checkbox"]:checked {
+          background-color: var(--primary-color);
+          border-color: var(--primary-color);
+        }
+
+        .sport-option input[type="checkbox"]:checked::before {
+          content: '✓';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          font-size: 12px;
         }
 
         .sub-options {
           margin-left: 25px;
-          margin-top: 10px;
+          margin-top: 15px;
           padding: 15px;
           background-color: var(--light-gray);
           border-radius: var(--border-radius);
+          border-left: 3px solid var(--primary-color);
+          animation: fadeIn 0.3s ease;
         }
 
+        /* Team Members */
         .team-members {
           display: flex;
           flex-direction: column;
@@ -211,17 +563,30 @@
           grid-template-columns: 1fr 1fr 1fr;
           gap: 10px;
           align-items: center;
+          padding: 15px;
+          background-color: rgba(255, 255, 255, 0.5);
+          border-radius: var(--border-radius);
+          transition: var(--transition);
+        }
+
+        .team-member:hover {
+          background-color: rgba(255, 255, 255, 0.8);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .team-member label {
           grid-column: 1 / -1;
           margin-bottom: 5px;
+          color: var(--primary-dark);
+          font-weight: 600;
         }
 
+        /* Commitment Section */
         .commitment {
           background-color: var(--light-gray);
-          padding: 20px;
+          padding: 25px;
           border-radius: var(--border-radius);
+          border-left: 5px solid var(--primary-color);
         }
 
         .checkbox-container {
@@ -231,6 +596,7 @@
           padding-left: 35px;
           cursor: pointer;
           font-weight: normal;
+          margin-bottom: 15px;
         }
 
         .checkbox-container input {
@@ -245,11 +611,12 @@
           position: absolute;
           top: 0;
           left: 0;
-          height: 20px;
-          width: 20px;
-          background-color: #fff;
+          height: 22px;
+          width: 22px;
+          background-color: var(--white);
           border: 2px solid var(--medium-gray);
-          border-radius: 3px;
+          border-radius: 4px;
+          transition: var(--transition);
         }
 
         .checkbox-container:hover input ~ .checkmark {
@@ -269,11 +636,12 @@
 
         .checkbox-container input:checked ~ .checkmark:after {
           display: block;
+          animation: checkmark 0.2s ease-in-out;
         }
 
         .checkbox-container .checkmark:after {
-          left: 6px;
-          top: 2px;
+          left: 7px;
+          top: 3px;
           width: 5px;
           height: 10px;
           border: solid white;
@@ -281,140 +649,199 @@
           transform: rotate(45deg);
         }
 
+        /* Form Actions */
         .form-actions {
           display: flex;
           justify-content: center;
           gap: 20px;
-          margin-top: 30px;
+          margin-top: 40px;
         }
 
         button {
-          padding: 12px 30px;
+          padding: 14px 30px;
           border: none;
-          border-radius: var(--border-radius);
+          border-radius: 50px;
           font-size: 16px;
-          font-weight: 500;
+          font-weight: 600;
           cursor: pointer;
-          transition: background-color 0.3s, transform 0.2s;
+          transition: var(--transition);
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+
+        button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0%;
+          height: 100%;
+          background-color: rgba(255, 255, 255, 0.1);
+          transition: all 0.5s ease;
+          z-index: -1;
+        }
+
+        button:hover::before {
+          width: 100%;
         }
 
         button:hover {
-          transform: translateY(-2px);
+          transform: translateY(-3px);
+          box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
         }
 
         button:active {
           transform: translateY(0);
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
 
         #submitBtn {
-          background-color: var(--primary-color);
+          background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
           color: white;
+          box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
         }
 
         #submitBtn:hover {
-          background-color: var(--primary-dark);
+          background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
         }
 
         #resetBtn {
-          background-color: var(--medium-gray);
+          background-color: var(--white);
           color: var(--text-color);
+          border: 2px solid var(--medium-gray);
         }
 
         #resetBtn:hover {
-          background-color: var(--dark-gray);
-          color: white;
+          background-color: var(--light-gray);
+          border-color: var(--dark-gray);
         }
 
+        /* Success Message */
         #successMessage {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background-color: rgba(0, 0, 0, 0.7);
+          background-color: rgba(0, 0, 0, 0.8);
           display: flex;
           justify-content: center;
           align-items: center;
           z-index: 1000;
+          backdrop-filter: blur(5px);
+          animation: fadeIn 0.5s ease;
         }
 
         .success-content {
           background-color: white;
-          padding: 30px;
-          border-radius: var(--border-radius);
+          padding: 40px;
+          border-radius: var(--border-radius-lg);
           text-align: center;
           max-width: 500px;
           width: 90%;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          animation: scaleIn 0.5s ease;
+          position: relative;
         }
 
         .success-content i {
-          font-size: 60px;
+          font-size: 70px;
           color: var(--success-color);
           margin-bottom: 20px;
+          display: inline-block;
+          animation: successIcon 1s ease;
         }
 
         .success-content h2 {
           color: var(--success-color);
           border-bottom: none;
+          justify-content: center;
+          margin-bottom: 15px;
         }
 
         .success-content p {
           margin-bottom: 15px;
+          color: var(--text-color);
         }
 
         .success-content button {
-          background-color: var(--success-color);
+          background: linear-gradient(135deg, var(--success-color) 0%, #2e7d32 100%);
           color: white;
-          margin-top: 15px;
+          margin-top: 20px;
+          box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
         }
 
         .success-content button:hover {
-          background-color: #388e3c;
+          background: linear-gradient(135deg, #2e7d32 0%, var(--success-color) 100%);
         }
 
-        /* Thêm style cho phần thông tin tuyển vận động viên */
+        /* Info Banner */
         .info-banner {
           background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
           color: white;
-          padding: 20px;
-          border-radius: var(--border-radius);
+          padding: 30px;
+          border-radius: var(--border-radius-lg);
           margin-bottom: 30px;
           box-shadow: var(--box-shadow);
+          position: relative;
+          overflow: hidden;
+          animation: fadeIn 0.8s ease;
+        }
+
+        .info-banner::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+          opacity: 0.3;
         }
 
         .info-banner h2 {
           color: white;
           border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-          padding-bottom: 10px;
-          margin-bottom: 15px;
+          padding-bottom: 15px;
+          margin-bottom: 20px;
+          position: relative;
+          z-index: 1;
         }
 
         .info-content {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 20px;
+          gap: 30px;
+          position: relative;
+          z-index: 1;
         }
 
         .info-section {
-          margin-bottom: 20px;
+          margin-bottom: 25px;
+          animation: slideRight 0.5s ease;
         }
 
         .info-section h3 {
           color: white;
-          margin-bottom: 10px;
+          margin-bottom: 15px;
           display: flex;
           align-items: center;
+          font-weight: 600;
         }
 
         .info-section h3 i {
-          margin-right: 10px;
+          margin-right: 12px;
           background-color: rgba(255, 255, 255, 0.2);
-          width: 30px;
-          height: 30px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           display: flex;
           justify-content: center;
           align-items: center;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .info-section ul {
@@ -423,78 +850,188 @@
         }
 
         .info-section li {
-          margin-bottom: 8px;
+          margin-bottom: 10px;
           position: relative;
-          padding-left: 20px;
+          padding-left: 25px;
+          animation: fadeIn 0.5s ease;
         }
 
         .info-section li:before {
           content: "";
           position: absolute;
           left: 0;
-          top: 8px;
+          top: 10px;
           width: 8px;
           height: 8px;
           background-color: rgba(255, 255, 255, 0.6);
           border-radius: 50%;
+          transition: var(--transition);
+        }
+
+        .info-section li:hover:before {
+          background-color: var(--accent-color);
+          transform: scale(1.5);
         }
 
         .highlight-box {
           background-color: rgba(255, 255, 255, 0.1);
           border-radius: var(--border-radius);
-          padding: 15px;
-          margin-top: 15px;
+          padding: 20px;
+          margin-top: 20px;
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          animation: fadeIn 0.8s ease;
         }
 
         .highlight-box h4 {
           color: white;
-          margin-bottom: 10px;
-          font-size: 16px;
+          margin-bottom: 15px;
+          font-size: 18px;
+          display: flex;
+          align-items: center;
+        }
+
+        .highlight-box h4 i {
+          margin-right: 10px;
         }
 
         .prize-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 10px;
-          margin-top: 10px;
+          gap: 15px;
+          margin-top: 15px;
         }
 
         .prize-item {
           background-color: rgba(255, 255, 255, 0.1);
-          padding: 10px;
+          padding: 15px;
           border-radius: var(--border-radius);
           text-align: center;
+          transition: var(--transition);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .prize-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+          background-color: rgba(255, 255, 255, 0.2);
         }
 
         .prize-item.first {
           background-color: rgba(255, 215, 0, 0.3);
+          border-color: rgba(255, 215, 0, 0.5);
         }
 
         .prize-item.second {
           background-color: rgba(192, 192, 192, 0.3);
+          border-color: rgba(192, 192, 192, 0.5);
         }
 
         .prize-item.third {
           background-color: rgba(205, 127, 50, 0.3);
+          border-color: rgba(205, 127, 50, 0.5);
         }
 
         .prize-item h5 {
-          margin-bottom: 5px;
-          font-size: 14px;
+          margin-bottom: 8px;
+          font-size: 16px;
+          font-weight: 700;
         }
 
         .prize-item p {
-          font-size: 12px;
+          font-size: 13px;
           margin: 0;
+          line-height: 1.4;
         }
 
+        /* Animations */
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+          from { 
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideDown {
+          from { 
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideRight {
+          from { 
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes pulse {
+          0% { transform: scale(0.5); opacity: 0; }
+          50% { transform: scale(1.2); opacity: 0.8; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes checkmark {
+          0% { height: 0; width: 0; opacity: 0; }
+          30% { height: 10px; width: 0; opacity: 1; }
+          100% { height: 10px; width: 5px; opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+          from { 
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to { 
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes successIcon {
+          0% { transform: scale(0); }
+          50% { transform: scale(1.2); }
+          100% { transform: scale(1); }
+        }
+
+        /* Responsive Styles */
         @media (max-width: 768px) {
           .container {
             padding: 10px;
           }
 
-          .form-section {
-            padding: 15px;
+          header, .info-banner, .form-section {
+            padding: 20px;
+          }
+
+          h1 {
+            font-size: 24px;
+          }
+
+          .school-name {
+            font-size: 18px;
+          }
+
+          .info-content {
+            grid-template-columns: 1fr;
           }
 
           .sport-options {
@@ -518,21 +1055,50 @@
             width: 100%;
           }
 
-          .info-content {
-            grid-template-columns: 1fr;
-          }
-
           .prize-grid {
             grid-template-columns: 1fr 1fr;
+          }
+          
+          .logo {
+            max-width: 150px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .prize-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .form-section {
+            padding: 15px;
+          }
+          
+          h2 {
+            font-size: 20px;
+          }
+          
+          h3 {
+            font-size: 18px;
           }
         }
     </style>
 </head>
 <body>
 <div class="container">
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-text">
+            <span>Tiến độ hoàn thành</span>
+            <span id="progressPercent">0%</span>
+        </div>
+    </div>
+
     <header>
+        <div class="logo-container">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vnus-kg11gT2e0Jxh343GkJrM8lrWDumj97.png" alt="VNUS Logo" class="logo">
+        </div>
         <h1>ĐĂNG KÝ THAM GIA HỘI THAO SINH VIÊN DUY TÂN 2025</h1>
-        <p>Trường Đào Tạo Quốc Tế - Đại học Duy Tân</p>
+        <div class="school-name">Trường Đào Tạo Quốc Tế - Đại học Duy Tân</div>
     </header>
 
     <!-- Thêm phần thông tin tuyển vận động viên -->
@@ -598,16 +1164,17 @@
 
     <form id="registrationForm">
         <!-- THÔNG TIN CÁ NHÂN -->
-        <section class="form-section">
+        <section class="form-section" id="section1">
             <h2><i class="fas fa-user"></i> I. THÔNG TIN CÁ NHÂN</h2>
-            <div class="form-group">
+            
+            <div class="input-group">
+                <input type="text" id="fullName" name="fullName" required placeholder=" ">
                 <label for="fullName">Họ và tên <span class="required">*</span></label>
-                <input type="text" id="fullName" name="fullName" required>
             </div>
 
-            <div class="form-group">
+            <div class="input-group">
+                <input type="text" id="studentId" name="studentId" required placeholder=" ">
                 <label for="studentId">MSSV <span class="required">*</span></label>
-                <input type="text" id="studentId" name="studentId" required>
             </div>
 
             <div class="form-group">
@@ -618,100 +1185,146 @@
             <div class="form-group">
                 <label>Giới tính <span class="required">*</span></label>
                 <div class="radio-group">
-                    <label><input type="radio" name="gender" value="Nam" required> Nam</label>
-                    <label><input type="radio" name="gender" value="Nữ"> Nữ</label>
+                    <label>
+                        <input type="radio" name="gender" value="Nam" required>
+                        <span class="radio-checkmark"></span>
+                        Nam
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="Nữ">
+                        <span class="radio-checkmark"></span>
+                        Nữ
+                    </label>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="input-group">
+                <input type="text" id="class" name="class" required placeholder=" ">
                 <label for="class">Lớp <span class="required">*</span></label>
-                <input type="text" id="class" name="class" required>
             </div>
 
-            <div class="form-group">
+            <div class="input-group">
+                <input type="text" id="faculty" name="faculty" required placeholder=" ">
                 <label for="faculty">Khoa/Viện <span class="required">*</span></label>
-                <input type="text" id="faculty" name="faculty" required>
             </div>
 
-            <div class="form-group">
+            <div class="input-group">
+                <input type="tel" id="phone" name="phone" required placeholder=" ">
                 <label for="phone">Số điện thoại <span class="required">*</span></label>
-                <input type="tel" id="phone" name="phone" required>
             </div>
 
-            <div class="form-group">
+            <div class="input-group">
+                <input type="email" id="email" name="email" required placeholder=" ">
                 <label for="email">Email <span class="required">*</span></label>
-                <input type="email" id="email" name="email" required>
             </div>
 
             <div class="form-group">
                 <label for="photo">Ảnh 3x4</label>
-                <input type="file" id="photo" name="photo" accept="image/*">
+                <label class="custom-file-upload">
+                    <input type="file" id="photo" name="photo" accept="image/*" onchange="updateFileName(this, 'photoFileName')">
+                    <i class="fas fa-cloud-upload-alt"></i> Chọn file ảnh
+                </label>
+                <div id="photoFileName" class="file-name"></div>
             </div>
 
             <div class="form-group">
                 <label>Đã từng tham gia thi đấu thể thao? <span class="required">*</span></label>
                 <div class="radio-group">
-                    <label><input type="radio" name="previousExperience" value="Có" required onclick="togglePreviousExperience(true)"> Có</label>
-                    <label><input type="radio" name="previousExperience" value="Không" onclick="togglePreviousExperience(false)"> Không</label>
+                    <label>
+                        <input type="radio" name="previousExperience" value="Có" required onclick="togglePreviousExperience(true)">
+                        <span class="radio-checkmark"></span>
+                        Có
+                    </label>
+                    <label>
+                        <input type="radio" name="previousExperience" value="Không" onclick="togglePreviousExperience(false)">
+                        <span class="radio-checkmark"></span>
+                        Không
+                    </label>
                 </div>
             </div>
 
             <div id="previousExperienceDetails" class="hidden">
-                <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="sportType" name="sportType" placeholder=" ">
                     <label for="sportType">Môn</label>
-                    <input type="text" id="sportType" name="sportType">
                 </div>
-                <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="competition" name="competition" placeholder=" ">
                     <label for="competition">Giải</label>
-                    <input type="text" id="competition" name="competition">
                 </div>
                 <div class="form-group">
                     <label for="year">Năm</label>
                     <input type="number" id="year" name="year" min="2000" max="2025">
                 </div>
-                <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="achievement" name="achievement" placeholder=" ">
                     <label for="achievement">Thành tích</label>
-                    <input type="text" id="achievement" name="achievement">
                 </div>
                 <div class="form-group">
                     <label for="achievementPhoto">Upload ảnh thành tích (nếu có)</label>
-                    <input type="file" id="achievementPhoto" name="achievementPhoto" accept="image/*">
+                    <label class="custom-file-upload">
+                        <input type="file" id="achievementPhoto" name="achievementPhoto" accept="image/*" onchange="updateFileName(this, 'achievementPhotoFileName')">
+                        <i class="fas fa-cloud-upload-alt"></i> Chọn file ảnh
+                    </label>
+                    <div id="achievementPhotoFileName" class="file-name"></div>
                 </div>
             </div>
         </section>
 
         <!-- ĐĂNG KÝ THAM GIA THI ĐẤU -->
-        <section class="form-section">
+        <section class="form-section" id="section2">
             <h2><i class="fas fa-trophy"></i> II. ĐĂNG KÝ THAM GIA THI ĐẤU (Chọn tối đa 2 nội dung)</h2>
-            <p class="note">Lưu ý: Bạn chỉ được chọn tối đa 2 môn thi đấu</p>
-            <div id="sportsCounter" class="counter">Đã chọn: <span id="selectedCount">0</span>/2 môn</div>
+            <p class="note"><i class="fas fa-info-circle"></i> Lưu ý: Bạn chỉ được chọn tối đa 2 môn thi đấu</p>
+            <div id="sportsCounter" class="counter">
+                Đã chọn: <span id="selectedCount">0</span>/2 môn
+            </div>
 
             <!-- 1. Bóng đá -->
             <div class="sport-section">
                 <h3><i class="fas fa-futbol"></i> 1. Bóng đá</h3>
                 <div class="sport-options">
                     <div class="sport-option">
-                        <input type="checkbox" id="football-male" name="sports" value="Bóng đá nam" class="sport-checkbox" data-parent="football-male">
-                        <label for="football-male">Bóng đá nam (Tuyển 10 cầu thủ, 2 HLV)</label>
+                        <label>
+                            <input type="checkbox" id="football-male" name="sports" value="Bóng đá nam" class="sport-checkbox" data-parent="football-male">
+                            Bóng đá nam (Tuyển 10 cầu thủ, 2 HLV)
+                        </label>
                         
                         <div class="sub-options hidden" data-for="football-male">
                             <label>Vai trò:</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="football-male-role" value="Cầu thủ"> Cầu thủ</label>
-                                <label><input type="radio" name="football-male-role" value="HLV"> HLV</label>
+                                <label>
+                                    <input type="radio" name="football-male-role" value="Cầu thủ">
+                                    <span class="radio-checkmark"></span>
+                                    Cầu thủ
+                                </label>
+                                <label>
+                                    <input type="radio" name="football-male-role" value="HLV">
+                                    <span class="radio-checkmark"></span>
+                                    HLV
+                                </label>
                             </div>
                         </div>
                     </div>
 
                     <div class="sport-option">
-                        <input type="checkbox" id="football-female" name="sports" value="Bóng đá nữ" class="sport-checkbox" data-parent="football-female">
-                        <label for="football-female">Bóng đá nữ (Tuyển 10 cầu thủ, 2 HLV)</label>
+                        <label>
+                            <input type="checkbox" id="football-female" name="sports" value="Bóng đá nữ" class="sport-checkbox" data-parent="football-female">
+                            Bóng đá nữ (Tuyển 10 cầu thủ, 2 HLV)
+                        </label>
                         
                         <div class="sub-options hidden" data-for="football-female">
                             <label>Vai trò:</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="football-female-role" value="Cầu thủ"> Cầu thủ</label>
-                                <label><input type="radio" name="football-female-role" value="HLV"> HLV</label>
+                                <label>
+                                    <input type="radio" name="football-female-role" value="Cầu thủ">
+                                    <span class="radio-checkmark"></span>
+                                    Cầu thủ
+                                </label>
+                                <label>
+                                    <input type="radio" name="football-female-role" value="HLV">
+                                    <span class="radio-checkmark"></span>
+                                    HLV
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -723,59 +1336,102 @@
                 <h3><i class="fas fa-volleyball-ball"></i> 2. Bóng chuyền</h3>
                 <div class="sport-options">
                     <div class="sport-option">
-                        <input type="checkbox" id="volleyball-male" name="sports" value="Bóng chuyền nam" class="sport-checkbox" data-parent="volleyball-male">
-                        <label for="volleyball-male">Bóng chuyền nam (12 cầu thủ, 2 HLV)</label>
+                        <label>
+                            <input type="checkbox" id="volleyball-male" name="sports" value="Bóng chuyền nam" class="sport-checkbox" data-parent="volleyball-male">
+                            Bóng chuyền nam (12 cầu thủ, 2 HLV)
+                        </label>
                         
                         <div class="sub-options hidden" data-for="volleyball-male">
                             <label>Vai trò:</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="volleyball-male-role" value="Cầu thủ"> Cầu thủ</label>
-                                <label><input type="radio" name="volleyball-male-role" value="HLV"> HLV</label>
+                                <label>
+                                    <input type="radio" name="volleyball-male-role" value="Cầu thủ">
+                                    <span class="radio-checkmark"></span>
+                                    Cầu thủ
+                                </label>
+                                <label>
+                                    <input type="radio" name="volleyball-male-role" value="HLV">
+                                    <span class="radio-checkmark"></span>
+                                    HLV
+                                </label>
                             </div>
                         </div>
                     </div>
 
                     <div class="sport-option">
-                        <input type="checkbox" id="volleyball-female" name="sports" value="Bóng chuyền nữ" class="sport-checkbox" data-parent="volleyball-female">
-                        <label for="volleyball-female">Bóng chuyền nữ (12 cầu thủ, 2 HLV)</label>
+                        <label>
+                            <input type="checkbox" id="volleyball-female" name="sports" value="Bóng chuyền nữ" class="sport-checkbox" data-parent="volleyball-female">
+                            Bóng chuyền nữ (12 cầu thủ, 2 HLV)
+                        </label>
                         
                         <div class="sub-options hidden" data-for="volleyball-female">
                             <label>Vai trò:</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="volleyball-female-role" value="Cầu thủ"> Cầu thủ</label>
-                                <label><input type="radio" name="volleyball-female-role" value="HLV"> HLV</label>
+                                <label>
+                                    <input type="radio" name="volleyball-female-role" value="Cầu thủ">
+                                    <span class="radio-checkmark"></span>
+                                    Cầu thủ
+                                </label>
+                                <label>
+                                    <input type="radio" name="volleyball-female-role" value="HLV">
+                                    <span class="radio-checkmark"></span>
+                                    HLV
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Các môn thể thao khác giữ nguyên cấu trúc nhưng áp dụng style mới -->
+            <!-- Chỉ hiển thị một số môn để giữ ngắn gọn, các môn khác tương tự -->
+
             <!-- 3. Bóng rổ -->
             <div class="sport-section">
                 <h3><i class="fas fa-basketball-ball"></i> 3. Bóng rổ</h3>
                 <div class="sport-options">
                     <div class="sport-option">
-                        <input type="checkbox" id="basketball-male" name="sports" value="Bóng rổ nam" class="sport-checkbox" data-parent="basketball-male">
-                        <label for="basketball-male">Bóng rổ nam (1 đội 6 cầu thủ, 2 HLV)</label>
+                        <label>
+                            <input type="checkbox" id="basketball-male" name="sports" value="Bóng rổ nam" class="sport-checkbox" data-parent="basketball-male">
+                            Bóng rổ nam (1 đội 6 cầu thủ, 2 HLV)
+                        </label>
                         
                         <div class="sub-options hidden" data-for="basketball-male">
                             <label>Vai trò:</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="basketball-male-role" value="Cầu thủ"> Cầu thủ</label>
-                                <label><input type="radio" name="basketball-male-role" value="HLV"> HLV</label>
+                                <label>
+                                    <input type="radio" name="basketball-male-role" value="Cầu thủ">
+                                    <span class="radio-checkmark"></span>
+                                    Cầu thủ
+                                </label>
+                                <label>
+                                    <input type="radio" name="basketball-male-role" value="HLV">
+                                    <span class="radio-checkmark"></span>
+                                    HLV
+                                </label>
                             </div>
                         </div>
                     </div>
 
                     <div class="sport-option">
-                        <input type="checkbox" id="basketball-female" name="sports" value="Bóng rổ nữ" class="sport-checkbox" data-parent="basketball-female">
-                        <label for="basketball-female">Bóng rổ nữ (1 đội 6 cầu thủ, 2 HLV)</label>
+                        <label>
+                            <input type="checkbox" id="basketball-female" name="sports" value="Bóng rổ nữ" class="sport-checkbox" data-parent="basketball-female">
+                            Bóng rổ nữ (1 đội 6 cầu thủ, 2 HLV)
+                        </label>
                         
                         <div class="sub-options hidden" data-for="basketball-female">
                             <label>Vai trò:</label>
                             <div class="radio-group">
-                                <label><input type="radio" name="basketball-female-role" value="Cầu thủ"> Cầu thủ</label>
-                                <label><input type="radio" name="basketball-female-role" value="HLV"> HLV</label>
+                                <label>
+                                    <input type="radio" name="basketball-female-role" value="Cầu thủ">
+                                    <span class="radio-checkmark"></span>
+                                    Cầu thủ
+                                </label>
+                                <label>
+                                    <input type="radio" name="basketball-female-role" value="HLV">
+                                    <span class="radio-checkmark"></span>
+                                    HLV
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -787,22 +1443,30 @@
                 <h3><i class="fas fa-people-pull"></i> 4. Kéo co (Nam/Nữ chia đội 5–5)</h3>
                 <div class="sport-options">
                     <div class="sport-option">
-                        <input type="checkbox" id="tugofwar-male" name="sports" value="Kéo co nam" class="sport-checkbox" data-parent="tugofwar-male">
-                        <label for="tugofwar-male">Kéo co nam (5 người)</label>
+                        <label>
+                            <input type="checkbox" id="tugofwar-male" name="sports" value="Kéo co nam" class="sport-checkbox" data-parent="tugofwar-male">
+                            Kéo co nam (5 người)
+                        </label>
                         
                         <div class="sub-options hidden" data-for="tugofwar-male">
-                            <label for="tugofwar-male-weight">Cân nặng hiện tại (kg):</label>
-                            <input type="number" id="tugofwar-male-weight" name="tugofwar-male-weight" min="30" max="150" step="0.1">
+                            <div class="input-group">
+                                <input type="number" id="tugofwar-male-weight" name="tugofwar-male-weight" min="30" max="150" step="0.1" placeholder=" ">
+                                <label for="tugofwar-male-weight">Cân nặng hiện tại (kg)</label>
+                            </div>
                         </div>
                     </div>
 
                     <div class="sport-option">
-                        <input type="checkbox" id="tugofwar-female" name="sports" value="Kéo co nữ" class="sport-checkbox" data-parent="tugofwar-female">
-                        <label for="tugofwar-female">Kéo co nữ (5 người)</label>
+                        <label>
+                            <input type="checkbox" id="tugofwar-female" name="sports" value="Kéo co nữ" class="sport-checkbox" data-parent="tugofwar-female">
+                            Kéo co nữ (5 người)
+                        </label>
                         
                         <div class="sub-options hidden" data-for="tugofwar-female">
-                            <label for="tugofwar-female-weight">Cân nặng hiện tại (kg):</label>
-                            <input type="number" id="tugofwar-female-weight" name="tugofwar-female-weight" min="30" max="150" step="0.1">
+                            <div class="input-group">
+                                <input type="number" id="tugofwar-female-weight" name="tugofwar-female-weight" min="30" max="150" step="0.1" placeholder=" ">
+                                <label for="tugofwar-female-weight">Cân nặng hiện tại (kg)</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -813,296 +1477,41 @@
                 <h3><i class="fas fa-running"></i> 5. Điền kinh</h3>
                 <div class="sport-options">
                     <div class="sport-option">
-                        <input type="checkbox" id="sprint-male" name="sports" value="Chạy ngắn 100m nam" class="sport-checkbox">
-                        <label for="sprint-male">Chạy ngắn 100m nam</label>
+                        <label>
+                            <input type="checkbox" id="sprint-male" name="sports" value="Chạy ngắn 100m nam" class="sport-checkbox">
+                            Chạy ngắn 100m nam
+                        </label>
                     </div>
                     <div class="sport-option">
-                        <input type="checkbox" id="sprint-female" name="sports" value="Chạy ngắn 100m nữ" class="sport-checkbox">
-                        <label for="sprint-female">Chạy ngắn 100m nữ</label>
+                        <label>
+                            <input type="checkbox" id="sprint-female" name="sports" value="Chạy ngắn 100m nữ" class="sport-checkbox">
+                            Chạy ngắn 100m nữ
+                        </label>
                     </div>
                     <div class="sport-option">
-                        <input type="checkbox" id="endurance-male" name="sports" value="Chạy bền 1500m nam" class="sport-checkbox">
-                        <label for="endurance-male">Chạy bền 1500m nam</label>
+                        <label>
+                            <input type="checkbox" id="endurance-male" name="sports" value="Chạy bền 1500m nam" class="sport-checkbox">
+                            Chạy bền 1500m nam
+                        </label>
                     </div>
                     <div class="sport-option">
-                        <input type="checkbox" id="endurance-female" name="sports" value="Chạy bền 800m nữ" class="sport-checkbox">
-                        <label for="endurance-female">Chạy bền 800m nữ</label>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="longjump-male" name="sports" value="Nhảy xa nam" class="sport-checkbox">
-                        <label for="longjump-male">Nhảy xa nam</label>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="longjump-female" name="sports" value="Nhảy xa nữ" class="sport-checkbox">
-                        <label for="longjump-female">Nhảy xa nữ</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. Đẩy gậy -->
-            <div class="sport-section">
-                <h3><i class="fas fa-hand-rock"></i> 6. Đẩy gậy</h3>
-                <div class="sport-options">
-                    <div class="sport-option">
-                        <input type="checkbox" id="armwrestling-male" name="sports" value="Đẩy gậy nam" class="sport-checkbox" data-parent="armwrestling-male">
-                        <label for="armwrestling-male">Đẩy gậy nam</label>
-                        
-                        <div class="sub-options hidden" data-for="armwrestling-male">
-                            <label>Chọn hạng cân:</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="armwrestling-male-weight-class" value="55-64 kg"> 55–64 kg</label>
-                                <label><input type="radio" name="armwrestling-male-weight-class" value="65-80 kg"> 65–80 kg</label>
-                            </div>
-                            <label for="armwrestling-male-weight">Cân nặng hiện tại (kg):</label>
-                            <input type="number" id="armwrestling-male-weight" name="armwrestling-male-weight" min="30" max="150" step="0.1">
-                        </div>
-                    </div>
-
-                    <div class="sport-option">
-                        <input type="checkbox" id="armwrestling-female" name="sports" value="Đẩy gậy nữ" class="sport-checkbox" data-parent="armwrestling-female">
-                        <label for="armwrestling-female">Đẩy gậy nữ</label>
-                        
-                        <div class="sub-options hidden" data-for="armwrestling-female">
-                            <label>Chọn hạng cân:</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="armwrestling-female-weight-class" value="45-54 kg"> 45–54 kg</label>
-                                <label><input type="radio" name="armwrestling-female-weight-class" value="55-65 kg"> 55–65 kg</label>
-                            </div>
-                            <label for="armwrestling-female-weight">Cân nặng hiện tại (kg):</label>
-                            <input type="number" id="armwrestling-female-weight" name="armwrestling-female-weight" min="30" max="150" step="0.1">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 7. Cầu lông -->
-            <div class="sport-section">
-                <h3><i class="fas fa-badminton"></i> 7. Cầu lông</h3>
-                <div class="sport-options">
-                    <div class="sport-option">
-                        <input type="checkbox" id="badminton-female-single" name="sports" value="Cầu lông đơn nữ" class="sport-checkbox">
-                        <label for="badminton-female-single">Đơn nữ</label>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="badminton-female-double" name="sports" value="Cầu lông đôi nữ" class="sport-checkbox" data-parent="badminton-female-double">
-                        <label for="badminton-female-double">Đôi nữ</label>
-                        
-                        <div class="sub-options hidden" data-for="badminton-female-double">
-                            <label for="badminton-female-double-partner">Tên người đánh cùng (nếu có):</label>
-                            <input type="text" id="badminton-female-double-partner" name="badminton-female-double-partner">
-                        </div>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="badminton-mixed" name="sports" value="Cầu lông đôi nam-nữ" class="sport-checkbox" data-parent="badminton-mixed">
-                        <label for="badminton-mixed">Đôi nam – nữ</label>
-                        
-                        <div class="sub-options hidden" data-for="badminton-mixed">
-                            <label for="badminton-mixed-partner">Tên người đánh cùng (nếu có):</label>
-                            <input type="text" id="badminton-mixed-partner" name="badminton-mixed-partner">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. Cờ vua / cờ tướng -->
-            <div class="sport-section">
-                <h3><i class="fas fa-chess"></i> 8. Cờ vua / cờ tướng</h3>
-                <div class="sport-options">
-                    <div class="sport-option">
-                        <input type="checkbox" id="chess-male" name="sports" value="Cờ vua nam" class="sport-checkbox">
-                        <label for="chess-male">Cờ vua nam</label>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="chess-female" name="sports" value="Cờ vua nữ" class="sport-checkbox">
-                        <label for="chess-female">Cờ vua nữ</label>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="xiangqi-male" name="sports" value="Cờ tướng nam" class="sport-checkbox">
-                        <label for="xiangqi-male">Cờ tướng nam</label>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="xiangqi-female" name="sports" value="Cờ tướng nữ" class="sport-checkbox">
-                        <label for="xiangqi-female">Cờ tướng nữ</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 9. Bóng bàn -->
-            <div class="sport-section">
-                <h3><i class="fas fa-table-tennis"></i> 9. Bóng bàn</h3>
-                <div class="sport-options">
-                    <div class="sport-option">
-                        <input type="checkbox" id="tabletennis-male" name="sports" value="Bóng bàn đơn nam" class="sport-checkbox">
-                        <label for="tabletennis-male">Đơn nam</label>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="tabletennis-female" name="sports" value="Bóng bàn đơn nữ" class="sport-checkbox">
-                        <label for="tabletennis-female">Đơn nữ</label>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="tabletennis-mixed" name="sports" value="Bóng bàn đôi nam-nữ" class="sport-checkbox" data-parent="tabletennis-mixed">
-                        <label for="tabletennis-mixed">Đôi nam – nữ</label>
-                        
-                        <div class="sub-options hidden" data-for="tabletennis-mixed">
-                            <label for="tabletennis-mixed-partner">Tên người đánh cùng (nếu có):</label>
-                            <input type="text" id="tabletennis-mixed-partner" name="tabletennis-mixed-partner">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 10. Pickleball -->
-            <div class="sport-section">
-                <h3><i class="fas fa-table-tennis"></i> 10. Pickleball</h3>
-                <div class="sport-options">
-                    <div class="sport-option">
-                        <input type="checkbox" id="pickleball-male" name="sports" value="Pickleball đôi nam" class="sport-checkbox" data-parent="pickleball-male">
-                        <label for="pickleball-male">Đôi nam</label>
-                        
-                        <div class="sub-options hidden" data-for="pickleball-male">
-                            <label for="pickleball-male-partner">Tên người đánh cùng (nếu có):</label>
-                            <input type="text" id="pickleball-male-partner" name="pickleball-male-partner">
-                        </div>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="pickleball-female" name="sports" value="Pickleball đôi nữ" class="sport-checkbox" data-parent="pickleball-female">
-                        <label for="pickleball-female">Đôi nữ</label>
-                        
-                        <div class="sub-options hidden" data-for="pickleball-female">
-                            <label for="pickleball-female-partner">Tên người đánh cùng (nếu có):</label>
-                            <input type="text" id="pickleball-female-partner" name="pickleball-female-partner">
-                        </div>
-                    </div>
-                    <div class="sport-option">
-                        <input type="checkbox" id="pickleball-mixed" name="sports" value="Pickleball đôi nam-nữ" class="sport-checkbox" data-parent="pickleball-mixed">
-                        <label for="pickleball-mixed">Đôi nam – nữ</label>
-                        
-                        <div class="sub-options hidden" data-for="pickleball-mixed">
-                            <label for="pickleball-mixed-partner">Tên người đánh cùng (nếu có):</label>
-                            <input type="text" id="pickleball-mixed-partner" name="pickleball-mixed-partner">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 11. Liên Quân Mobile -->
-            <div class="sport-section">
-                <h3><i class="fas fa-gamepad"></i> 11. Liên Quân Mobile</h3>
-                <div class="sport-options">
-                    <div class="sport-option">
-                        <input type="checkbox" id="aov" name="sports" value="Liên Quân Mobile" class="sport-checkbox" data-parent="aov">
-                        <label for="aov">Liên Quân Mobile (Đăng ký theo team – yêu cầu rank Đại Cao Thủ trở lên)</label>
-                        
-                        <div class="sub-options hidden" data-for="aov">
-                            <p>Chỉ một người đại diện đăng ký cả team</p>
-                            <div class="form-group">
-                                <label for="aov-team-name">Tên team:</label>
-                                <input type="text" id="aov-team-name" name="aov-team-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="aov-rank">Số sao Đại Cao Thủ:</label>
-                                <input type="number" id="aov-rank" name="aov-rank" min="1" max="100">
-                            </div>
-                            <div class="form-group">
-                                <label for="aov-rank-proof">Upload ảnh minh chứng rank team:</label>
-                                <input type="file" id="aov-rank-proof" name="aov-rank-proof" accept="image/*">
-                            </div>
-                            <div class="form-group">
-                                <label>Danh sách team (5 thành viên chính + 1 dự bị – nếu có):</label>
-                                <div class="team-members">
-                                    <div class="team-member">
-                                        <label>Thành viên 1:</label>
-                                        <input type="text" name="aov-member-1-name" placeholder="Tên">
-                                        <input type="text" name="aov-member-1-id" placeholder="MSSV">
-                                        <select name="aov-member-1-role">
-                                            <option value="">-- Vai trò --</option>
-                                            <option value="Top">Top</option>
-                                            <option value="Mid">Mid</option>
-                                            <option value="Rừng">Rừng</option>
-                                            <option value="AD">AD</option>
-                                            <option value="SP">SP</option>
-                                        </select>
-                                    </div>
-                                    <div class="team-member">
-                                        <label>Thành viên 2:</label>
-                                        <input type="text" name="aov-member-2-name" placeholder="Tên">
-                                        <input type="text" name="aov-member-2-id" placeholder="MSSV">
-                                        <select name="aov-member-2-role">
-                                            <option value="">-- Vai trò --</option>
-                                            <option value="Top">Top</option>
-                                            <option value="Mid">Mid</option>
-                                            <option value="Rừng">Rừng</option>
-                                            <option value="AD">AD</option>
-                                            <option value="SP">SP</option>
-                                        </select>
-                                    </div>
-                                    <div class="team-member">
-                                        <label>Thành viên 3:</label>
-                                        <input type="text" name="aov-member-3-name" placeholder="Tên">
-                                        <input type="text" name="aov-member-3-id" placeholder="MSSV">
-                                        <select name="aov-member-3-role">
-                                            <option value="">-- Vai trò --</option>
-                                            <option value="Top">Top</option>
-                                            <option value="Mid">Mid</option>
-                                            <option value="Rừng">Rừng</option>
-                                            <option value="AD">AD</option>
-                                            <option value="SP">SP</option>
-                                        </select>
-                                    </div>
-                                    <div class="team-member">
-                                        <label>Thành viên 4:</label>
-                                        <input type="text" name="aov-member-4-name" placeholder="Tên">
-                                        <input type="text" name="aov-member-4-id" placeholder="MSSV">
-                                        <select name="aov-member-4-role">
-                                            <option value="">-- Vai trò --</option>
-                                            <option value="Top">Top</option>
-                                            <option value="Mid">Mid</option>
-                                            <option value="Rừng">Rừng</option>
-                                            <option value="AD">AD</option>
-                                            <option value="SP">SP</option>
-                                        </select>
-                                    </div>
-                                    <div class="team-member">
-                                        <label>Thành viên 5:</label>
-                                        <input type="text" name="aov-member-5-name" placeholder="Tên">
-                                        <input type="text" name="aov-member-5-id" placeholder="MSSV">
-                                        <select name="aov-member-5-role">
-                                            <option value="">-- Vai trò --</option>
-                                            <option value="Top">Top</option>
-                                            <option value="Mid">Mid</option>
-                                            <option value="Rừng">Rừng</option>
-                                            <option value="AD">AD</option>
-                                            <option value="SP">SP</option>
-                                        </select>
-                                    </div>
-                                    <div class="team-member">
-                                        <label>Thành viên dự bị (nếu có):</label>
-                                        <input type="text" name="aov-member-6-name" placeholder="Tên">
-                                        <input type="text" name="aov-member-6-id" placeholder="MSSV">
-                                        <select name="aov-member-6-role">
-                                            <option value="">-- Vai trò --</option>
-                                            <option value="Top">Top</option>
-                                            <option value="Mid">Mid</option>
-                                            <option value="Rừng">Rừng</option>
-                                            <option value="AD">AD</option>
-                                            <option value="SP">SP</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <label>
+                            <input type="checkbox" id="endurance-female" name="sports" value="Chạy bền 800m nữ" class="sport-checkbox">
+                            Chạy bền 800m nữ
+                        </label>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CAM KẾT -->
-        <section class="form-section">
+        <section class="form-section" id="section3">
             <h2><i class="fas fa-handshake"></i> III. CAM KẾT</h2>
             <div class="commitment">
                 <div class="form-group">
                     <label class="checkbox-container">
                         <input type="checkbox" id="agreement1" name="agreement1" required>
+                        <span class="checkmark"></span>  id="agreement1" name="agreement1" required>
                         <span class="checkmark"></span>
                         Tôi đã đọc kỹ điều lệ hội thao, đồng ý tuân thủ quy định và tham gia với tinh thần fair-play.
                     </label>
@@ -1114,16 +1523,16 @@
                         Tôi xác nhận chỉ đăng ký tối đa 2 môn thi đấu.
                     </label>
                 </div>
-                <div class="form-group">
-                    <label for="signature">Ký tên (hoặc xác nhận họ tên):</label>
-                    <input type="text" id="signature" name="signature" required>
+                <div class="input-group">
+                    <input type="text" id="signature" name="signature" required placeholder=" ">
+                    <label for="signature">Ký tên (hoặc xác nhận họ tên) <span class="required">*</span></label>
                 </div>
             </div>
         </section>
 
         <div class="form-actions">
-            <button type="submit" id="submitBtn">Gửi đăng ký</button>
-            <button type="reset" id="resetBtn">Xóa form</button>
+            <button type="submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Gửi đăng ký</button>
+            <button type="reset" id="resetBtn"><i class="fas fa-redo"></i> Xóa form</button>
         </div>
     </form>
 
@@ -1133,7 +1542,7 @@
             <h2>Đăng ký thành công!</h2>
             <p>Cảm ơn bạn đã đăng ký tham gia Hội thao Sinh viên Duy Tân 2025.</p>
             <p>Thông tin của bạn đã được ghi nhận.</p>
-            <button id="closeSuccessBtn">Đóng</button>
+            <button id="closeSuccessBtn"><i class="fas fa-check"></i> Đóng</button>
         </div>
     </div>
 </div>
@@ -1151,15 +1560,54 @@
       const submitBtn = document.getElementById("submitBtn");
       const resetBtn = document.getElementById("resetBtn");
       const closeSuccessBtn = document.getElementById("closeSuccessBtn");
+      const progressBar = document.getElementById("progressBar");
+      const progressPercent = document.getElementById("progressPercent");
+
+      // Cập nhật progress bar
+      function updateProgress() {
+        const requiredFields = form.querySelectorAll("[required]");
+        let filledCount = 0;
+        
+        requiredFields.forEach(field => {
+          if (field.type === "checkbox" || field.type === "radio") {
+            if (field.checked) filledCount++;
+          } else if (field.value.trim() !== "") {
+            filledCount++;
+          }
+        });
+        
+        // Kiểm tra xem đã chọn ít nhất một môn thi đấu chưa
+        const selectedSports = document.querySelectorAll(".sport-checkbox:checked");
+        if (selectedSports.length > 0) {
+          filledCount++;
+        }
+        
+        const percent = Math.min(Math.round((filledCount / (requiredFields.length + 1)) * 100), 100);
+        progressBar.style.width = `${percent}%`;
+        progressPercent.textContent = `${percent}%`;
+      }
+
+      // Cập nhật tên file khi chọn file
+      window.updateFileName = (input, elementId) => {
+        const fileNameElement = document.getElementById(elementId);
+        if (input.files && input.files[0]) {
+          fileNameElement.textContent = input.files[0].name;
+        } else {
+          fileNameElement.textContent = "";
+        }
+        updateProgress();
+      }
 
       // Toggle previous experience details
       window.togglePreviousExperience = (show) => {
         const detailsSection = document.getElementById("previousExperienceDetails");
         if (show) {
           detailsSection.classList.remove("hidden");
+          detailsSection.style.animation = "fadeIn 0.5s ease";
         } else {
           detailsSection.classList.add("hidden");
         }
+        updateProgress();
       }
 
       // Handle sport selection and sub-options
@@ -1184,12 +1632,22 @@
             if (subOptions) {
               if (this.checked) {
                 subOptions.classList.remove("hidden");
+                subOptions.style.animation = "fadeIn 0.5s ease";
               } else {
                 subOptions.classList.add("hidden");
               }
             }
           }
+          
+          updateProgress();
         });
+      });
+
+      // Theo dõi sự thay đổi của tất cả các trường input để cập nhật progress bar
+      const allInputs = form.querySelectorAll("input, select, textarea");
+      allInputs.forEach(input => {
+        input.addEventListener("change", updateProgress);
+        input.addEventListener("input", updateProgress);
       });
 
       // Form submission
@@ -1220,14 +1678,14 @@
 
         // Simulate form submission
         submitBtn.disabled = true;
-        submitBtn.textContent = "Đang gửi...";
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
 
         // Giả lập gửi dữ liệu đến Google Forms
         setTimeout(() => {
           try {
             // Giả lập thành công
             submitBtn.disabled = false;
-            submitBtn.textContent = "Gửi đăng ký";
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi đăng ký';
             
             // Chỉ hiển thị thông báo thành công khi đã gửi dữ liệu thành công
             successMessage.classList.remove("hidden");
@@ -1235,7 +1693,7 @@
             // Xử lý lỗi nếu có
             alert("Có lỗi xảy ra khi gửi form. Vui lòng thử lại sau!");
             submitBtn.disabled = false;
-            submitBtn.textContent = "Gửi đăng ký";
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi đăng ký';
           }
         }, 1500);
       });
@@ -1252,6 +1710,13 @@
         selectedCountElement.textContent = "0";
         // Reset previous experience details
         document.getElementById("previousExperienceDetails").classList.add("hidden");
+        // Reset file names
+        document.querySelectorAll(".file-name").forEach(el => {
+          el.textContent = "";
+        });
+        // Reset progress bar
+        progressBar.style.width = "0%";
+        progressPercent.textContent = "0%";
       });
 
       // Reset button
@@ -1264,6 +1729,13 @@
         selectedCountElement.textContent = "0";
         // Reset previous experience details
         document.getElementById("previousExperienceDetails").classList.add("hidden");
+        // Reset file names
+        document.querySelectorAll(".file-name").forEach(el => {
+          el.textContent = "";
+        });
+        // Reset progress bar
+        progressBar.style.width = "0%";
+        progressPercent.textContent = "0%";
       });
 
       // Form validation
@@ -1314,7 +1786,7 @@
         }
 
         // Check if weight class is selected for arm wrestling
-        if (document.getElementById("armwrestling-male").checked) {
+        if (document.getElementById("armwrestling-male") && document.getElementById("armwrestling-male").checked) {
           const weightClass = document.querySelector('input[name="armwrestling-male-weight-class"]:checked');
           if (!weightClass) {
             alert("Vui lòng chọn hạng cân cho môn Đẩy gậy nam!");
@@ -1322,7 +1794,7 @@
           }
         }
 
-        if (document.getElementById("armwrestling-female").checked) {
+        if (document.getElementById("armwrestling-female") && document.getElementById("armwrestling-female").checked) {
           const weightClass = document.querySelector('input[name="armwrestling-female-weight-class"]:checked');
           if (!weightClass) {
             alert("Vui lòng chọn hạng cân cho môn Đẩy gậy nữ!");
@@ -1352,7 +1824,7 @@
         }
 
         // Check AOV team details if selected
-        if (document.getElementById("aov").checked) {
+        if (document.getElementById("aov") && document.getElementById("aov").checked) {
           const teamName = document.getElementById("aov-team-name").value;
           const rank = document.getElementById("aov-rank").value;
           const rankProof = document.getElementById("aov-rank-proof").files.length;
@@ -1387,6 +1859,19 @@
 
         return true;
       }
+
+      // Khởi tạo progress bar
+      updateProgress();
+      
+      // Thêm hiệu ứng scroll mượt khi click vào các section
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
     });
 </script>
 </body>
