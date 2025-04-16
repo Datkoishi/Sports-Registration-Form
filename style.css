@@ -1622,3 +1622,206 @@ button:active {
   color: #f0f0f0;
   text-decoration: underline;
 }
+/* RESPONSIVE STYLES FOR TABLETS AND MOBILE */
+
+/* Tablet (iPad) Styles */
+@media (max-width: 1024px) {
+  /* Giảm padding và margin */
+  .container {
+    padding: 15px;
+    max-width: 100%;
+  }
+  
+  .form-section {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+  
+  /* Điều chỉnh kích thước font */
+  h1 {
+    font-size: 24px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  h3 {
+    font-size: 16px;
+  }
+  
+  /* Giảm hiệu ứng hover 3D */
+  .form-section:hover {
+    transform: none !important;
+    transition: box-shadow 0.3s;
+  }
+  
+  .form-section:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Điều chỉnh layout grid */
+  .sport-options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  /* Giảm animation */
+  button:hover {
+    transform: translateY(-1px);
+  }
+  
+  /* Tắt animation cho các icon thể thao nổi */
+  .sports-icon {
+    animation: none !important;
+    opacity: 0.3;
+    position: fixed;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  /* Điều chỉnh container và padding */
+  .container {
+    padding: 10px;
+  }
+  
+  header {
+    padding: 15px 10px;
+  }
+  
+  .form-section {
+    padding: 15px 10px;
+    margin-bottom: 15px;
+  }
+  
+  /* Điều chỉnh kích thước font */
+  h1 {
+    font-size: 20px;
+  }
+  
+  h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  h3 {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  /* Chuyển layout grid thành 1 cột */
+  .sport-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  /* Điều chỉnh form groups */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Điều chỉnh input và labels */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  textarea {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  /* Tắt hoàn toàn các animations */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Ẩn các icon thể thao nổi */
+  .sports-icon {
+    display: none;
+  }
+  
+  /* Điều chỉnh nút */
+  button {
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  button:hover, button:active {
+    transform: none;
+  }
+  
+  /* Điều chỉnh radio và checkbox */
+  .radio-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .checkbox-container {
+    padding-left: 30px;
+  }
+  
+  .checkmark {
+    height: 18px;
+    width: 18px;
+  }
+  
+  /* Điều chỉnh sub-options */
+  .sub-options {
+    margin-left: 15px;
+    padding: 10px;
+  }
+  
+  /* Điều chỉnh thông báo thành công */
+  .success-content {
+    padding: 20px;
+    width: 95%;
+  }
+  
+  .success-content i {
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+}
+
+/* Điều chỉnh cho màn hình siêu nhỏ */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 18px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .team-member {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .team-member input, 
+  .team-member select {
+    margin-bottom: 5px;
+  }
+  
+  /* Tối ưu hiển thị cho các phần tử phức tạp */
+  .sub-options {
+    margin-left: 5px;
+    padding: 8px;
+  }
+}
