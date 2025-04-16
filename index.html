@@ -94,484 +94,442 @@
         </div>
 
         <form id="registrationForm">
-            <!-- THÔNG TIN CÁ NHÂN -->
-            <section class="form-section" id="section1">
-                <h2><i class="fas fa-user"></i> I. THÔNG TIN CÁ NHÂN</h2>
-                
-                <div class="input-group">
-                    <input type="text" id="fullName" name="fullName" required placeholder=" ">
-                    <label for="fullName">Họ và tên <span class="required">*</span></label>
-                </div>
-
-                <div class="input-group">
-                    <input type="text" id="studentId" name="studentId" required placeholder=" ">
-                    <label for="studentId">MSSV <span class="required">*</span></label>
-                </div>
-
-                <div class="form-group">
-                    <label for="birthDate">Ngày sinh <span class="required">*</span></label>
-                    <input type="date" id="birthDate" name="birthDate" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Giới tính <span class="required">*</span></label>
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="gender" value="Nam" required>
-                            <span class="radio-checkmark"></span>
-                            Nam
-                        </label>
-                        <label>
-                            <input type="radio" name="gender" value="Nữ">
-                            <span class="radio-checkmark"></span>
-                            Nữ
-                        </label>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <input type="text" id="class" name="class" required placeholder=" ">
-                    <label for="class">Lớp <span class="required">*</span></label>
-                </div>
-
-                <div class="input-group">
-                    <input type="text" id="faculty" name="faculty" required placeholder=" ">
-                    <label for="faculty">Khoa/Viện <span class="required">*</span></label>
-                </div>
-
-                <div class="input-group">
-                    <input type="tel" id="phone" name="phone" required placeholder=" ">
-                    <label for="phone">Số điện thoại <span class="required">*</span></label>
-                </div>
-
-                <div class="input-group">
-                    <input type="email" id="email" name="email" required placeholder=" ">
-                    <label for="email">Email <span class="required">*</span></label>
-                </div>
-
-                <div class="form-group">
-                    <label for="photo">Ảnh 3x4</label>
-                    <label class="custom-file-upload">
-                        <input type="file" id="photo" name="photo" accept="image/*" onchange="updateFileName(this, 'photoFileName')">
-                        <i class="fas fa-cloud-upload-alt"></i> Chọn file ảnh
-                    </label>
-                    <div id="photoFileName" class="file-name"></div>
-                </div>
-
-              
-            </section>
-
-            <!-- ĐĂNG KÝ THAM GIA THI ĐẤU -->
-            <section class="form-section" id="section2">
-                <h2><i class="fas fa-trophy"></i> II. ĐĂNG KÝ THAM GIA THI ĐẤU (Chọn tối đa 2 nội dung)</h2>
-                <p class="note"><i class="fas fa-info-circle"></i> Lưu ý: Bạn chỉ được chọn tối đa 2 môn thi đấu</p>
-                <div id="sportsCounter" class="counter">
-                    Đã chọn: <span id="selectedCount">0</span>/2 môn
-                </div>
-
-                <!-- 1. Bóng đá -->
-                <div class="sport-section">
-                    <h3><i class="fas fa-futbol"></i> 1. Bóng đá</h3>
-                    <div class="sport-options">
-                        <!--
-                         <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="football-male" name="sports" value="Bóng đá nam" class="sport-checkbox" data-parent="football-male">
-                                Bóng đá nam (Tuyển 10 cầu thủ, 2 HLV)
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="football-male">
-                                <label>Vai trò:</label>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="football-male-role" value="Cầu thủ">
-                                        <span class="radio-checkmark"></span>
-                                        Cầu thủ
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="football-male-role" value="HLV">
-                                        <span class="radio-checkmark"></span>
-                                        HLV
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        -->
-
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="football-female" name="sports" value="Bóng đá nữ" class="sport-checkbox" data-parent="football-female">
-                                Bóng đá nữ (Tuyển 10 cầu thủ, 2 HLV)
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="football-female">
-                                <label>Vai trò:</label>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="football-female-role" value="Cầu thủ">
-                                        <span class="radio-checkmark"></span>
-                                        Cầu thủ
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="football-female-role" value="HLV">
-                                        <span class="radio-checkmark"></span>
-                                        HLV
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. Bóng chuyền -->
-                <div class="sport-section">
-                    <h3><i class="fas fa-volleyball-ball"></i> 2. Bóng chuyền</h3>
-                    <div class="sport-options">
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="volleyball-male" name="sports" value="Bóng chuyền nam" class="sport-checkbox" data-parent="volleyball-male">
-                                Bóng chuyền nam (12 cầu thủ, 2 HLV)
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="volleyball-male">
-                                <label>Vai trò:</label>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="volleyball-male-role" value="Cầu thủ">
-                                        <span class="radio-checkmark"></span>
-                                        Cầu thủ
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="volleyball-male-role" value="HLV">
-                                        <span class="radio-checkmark"></span>
-                                        HLV
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="volleyball-female" name="sports" value="Bóng chuyền nữ" class="sport-checkbox" data-parent="volleyball-female">
-                                Bóng chuyền nữ (12 cầu thủ, 2 HLV)
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="volleyball-female">
-                                <label>Vai trò:</label>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="volleyball-female-role" value="Cầu thủ">
-                                        <span class="radio-checkmark"></span>
-                                        Cầu thủ
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="volleyball-female-role" value="HLV">
-                                        <span class="radio-checkmark"></span>
-                                        HLV
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. Bóng rổ -->
-                <div class="sport-section">
-                    <h3><i class="fas fa-basketball-ball"></i> 3. Bóng rổ</h3>
-                    <div class="sport-options">
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="basketball-male" name="sports" value="Bóng rổ nam" class="sport-checkbox" data-parent="basketball-male">
-                                Bóng rổ nam (1 đội 6 cầu thủ, 2 HLV)
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="basketball-male">
-                                <label>Vai trò:</label>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="basketball-male-role" value="Cầu thủ">
-                                        <span class="radio-checkmark"></span>
-                                        Cầu thủ
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="basketball-male-role" value="HLV">
-                                        <span class="radio-checkmark"></span>
-                                        HLV
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="basketball-female" name="sports" value="Bóng rổ nữ" class="sport-checkbox" data-parent="basketball-female">
-                                Bóng rổ nữ (1 đội 6 cầu thủ, 2 HLV)
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="basketball-female">
-                                <label>Vai trò:</label>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="basketball-female-role" value="Cầu thủ">
-                                        <span class="radio-checkmark"></span>
-                                        Cầu thủ
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="basketball-female-role" value="HLV">
-                                        <span class="radio-checkmark"></span>
-                                        HLV
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Kéo co -->
-                <div class="sport-section">
-                    <h3><i class="fas fa-people-pull"></i> 4. Kéo co 10 người (5 Nam/ 5 Nữ)</h3>
-                    <div class="sport-options">
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="tugofwar-male" name="sports" value="Kéo co nam" class="sport-checkbox" data-parent="tugofwar-male">
-                                Kéo co nam (5 người)
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="tugofwar-male">
-                                <div class="input-group">
-                                    <input type="number" id="tugofwar-male-weight" name="tugofwar-male-weight" min="30" max="150" step="0.1" placeholder=" ">
-                                    <label for="tugofwar-male-weight">Cân nặng hiện tại (kg)</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="tugofwar-female" name="sports" value="Kéo co nữ" class="sport-checkbox" data-parent="tugofwar-female">
-                                Kéo co nữ (5 người)
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="tugofwar-female">
-                                <div class="input-group">
-                                    <input type="number" id="tugofwar-female-weight" name="tugofwar-female-weight" min="30" max="150" step="0.1" placeholder=" ">
-                                    <label for="tugofwar-female-weight">Cân nặng hiện tại (kg)</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. Điền kinh -->
-                <div class="sport-section">
-                    <h3><i class="fas fa-running"></i> 5. Điền kinh</h3>
-                    <div class="sport-options">
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="sprint-male" name="sports" value="Chạy ngắn 100m nam" class="sport-checkbox">
-                                Chạy ngắn 100m nam
-                            </label>
-                        </div>
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="sprint-female" name="sports" value="Chạy ngắn 100m nữ" class="sport-checkbox">
-                                Chạy ngắn 100m nữ
-                            </label>
-                        </div>
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="endurance-male" name="sports" value="Chạy bền 1500m nam" class="sport-checkbox">
-                                Chạy bền 1500m nam
-                            </label>
-                        </div>
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="endurance-female" name="sports" value="Chạy bền 800m nữ" class="sport-checkbox">
-                                Chạy bền 800m nữ
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. Cờ vua -->
-                <div class="sport-section">
-                    <h3><i class="fas fa-chess"></i> 6. Cờ vua</h3>
-                    <div class="sport-options">
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="chess-male" name="sports" value="Cờ vua nam" class="sport-checkbox">
-                                Cờ vua nam
-                            </label>
-                        </div>
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="chess-female" name="sports" value="Cờ vua nữ" class="sport-checkbox">
-                                Cờ vua nữ
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7. Bóng bàn -->
-                <div class="sport-section">
-                    <h3><i class="fas fa-table-tennis"></i> 7. Bóng bàn</h3>
-                    <div class="sport-options">
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="tabletennis-male" name="sports" value="Bóng bàn nam" class="sport-checkbox">
-                                Bóng bàn nam
-                            </label>
-                        </div>
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="tabletennis-female" name="sports" value="Bóng bàn nữ" class="sport-checkbox">
-                                Bóng bàn nữ
-                            </label>
-                        </div>
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="tabletennis-double" name="sports" value="Bóng bàn đôi nam nữ" class="sport-checkbox" data-parent="tabletennis-double">
-                                Bóng bàn đôi nam nữ
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="tabletennis-double">
-                                <div class="input-group">
-                                    <input type="text" id="tabletennis-partner" name="tabletennis-partner" placeholder=" ">
-                                    <label for="tabletennis-partner">Tên đối tác</label>
-                                </div>
-                                <div class="input-group">
-                                    <input type="text" id="tabletennis-partner-id" name="tabletennis-partner-id" placeholder=" ">
-                                    <label for="tabletennis-partner-id">MSSV đối tác</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8. Cầu lông -->
-                <div class="sport-section">
-                    <h3><i class="fas fa-feather-alt"></i> 8. Cầu lông</h3>
-                    <div class="sport-options">
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="badminton-male" name="sports" value="Cầu lông nam" class="sport-checkbox">
-                                Cầu lông đơn nữ
-                            </label>
-                        </div>
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="badminton-female" name="sports" value="Cầu lông nữ" class="sport-checkbox">
-                                Cầu lông nữ
-                            </label>
-                        </div>
-                        <div class="sport-option">
-                            <label>
-                                <input type="checkbox" id="badminton-double" name="sports" value="Cầu lông đôi nam nữ" class="sport-checkbox" data-parent="badminton-double">
-                                Cầu lông đôi nam nữ
-                            </label>
-                            
-                            <div class="sub-options hidden" data-for="badminton-double">
-                                <div class="input-group">
-                                    <input type="text" id="badminton-partner" name="badminton-partner" placeholder=" ">
-                                    <label for="badminton-partner">Tên đối tác</label>
-                                </div>
-                                <div class="input-group">
-                                    <input type="text" id="badminton-partner-id" name="badminton-partner-id" placeholder=" ">
-                                    <label for="badminton-partner-id">MSSV đối tác</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Đã từng tham gia thi đấu thể thao? <span class="required">*</span></label>
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="previousExperience" value="Có" required onclick="togglePreviousExperience(true)">
-                            <span class="radio-checkmark"></span>
-                            Có
-                        </label>
-                        <label>
-                            <input type="radio" name="previousExperience" value="Không" onclick="togglePreviousExperience(false)">
-                            <span class="radio-checkmark"></span>
-                            Không
-                        </label>
-                    </div>
-                </div>
-
-                <div id="previousExperienceDetails" class="hidden">
-                    <div class="input-group">
-                        <input type="text" id="sportType" name="sportType" placeholder=" ">
-                        <label for="sportType">Môn</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" id="competition" name="competition" placeholder=" ">
-                        <label for="competition">Giải</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="year">Năm</label>
-                        <input type="number" id="year" name="year" min="2000" max="2025">
-                    </div>
-                    <div class="input-group">
-                        <input type="text" id="achievement" name="achievement" placeholder=" ">
-                        <label for="achievement">Thành tích</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="achievementPhoto">Upload ảnh thành tích (nếu có)</label>
-                        <label class="custom-file-upload">
-                            <input type="file" id="achievementPhoto" name="achievementPhoto" accept="image/*" onchange="updateFileName(this, 'achievementPhotoFileName')">
-                            <i class="fas fa-cloud-upload-alt"></i> Chọn file ảnh
-                        </label>
-                        <div id="achievementPhotoFileName" class="file-name"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CAM KẾT -->
-            <section class="form-section" id="section3">
-                <h2><i class="fas fa-handshake"></i> III. CAM KẾT</h2>
-                <div class="commitment">
-                    <div class="form-group">
-                        <label class="checkbox-container">
-                            <input type="checkbox" id="agreement1" name="agreement1" required>
-                            <span class="checkmark"></span>
-                            Tôi đã đọc kỹ điều lệ hội thao, đồng ý tuân thủ quy định và tham gia với tinh thần fair-play.
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="checkbox-container">
-                            <input type="checkbox" id="agreement2" name="agreement2" required>
-                            <span class="checkmark"></span>
-                            Tôi xác nhận chỉ đăng ký tối đa 2 môn thi đấu.
-                        </label>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" id="signature" name="signature" required placeholder=" ">
-                        <label for="signature">Ký tên (hoặc xác nhận họ tên) <span class="required">*</span></label>
-                    </div>
-                </div>
-            </section>
-
-            <div class="form-actions">
-                <button type="submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Gửi đăng ký</button>
-                <button type="reset" id="resetBtn"><i class="fas fa-redo"></i> Xóa form</button>
-            </div>
-        </form>
-
-        <div id="successMessage" class="hidden">
-            <div class="success-content">
-                <i class="fas fa-check-circle"></i>
-                <h2>Đăng ký thành công!</h2>
-                <p>Cảm ơn bạn đã đăng ký tham gia Hội thao Sinh viên Duy Tân 2025.</p>
-                <p>Thông tin của bạn đã được ghi nhận.</p>
-                <button id="closeSuccessBtn"><i class="fas fa-check"></i> Đóng</button>
-            </div>
-        </div>
+           <!-- Thông tin cá nhân -->
+<div class="form-section">
+    <h2>Thông tin cá nhân</h2>
+    <div class="form-group">
+      <label for="fullName">Họ và tên <span class="required">*</span></label>
+      <input type="text" id="fullName" name="fullName" required>
     </div>
-<footer class="footer">
-  <div class="footer-content">
-    <p>Designed & Developed by <a href="https://truongdat.glitch.me/" target="_blank" rel="noopener noreferrer">truongdat</a></p>
+    <div class="form-group">
+      <label for="studentId">Mã số sinh viên <span class="required">*</span></label>
+      <input type="text" id="studentId" name="studentId" required>
+    </div>
+    <div class="form-group">
+      <label for="birthDate">Ngày sinh <span class="required">*</span></label>
+      <input type="date" id="birthDate" name="birthDate" required>
+    </div>
+    <div class="form-group">
+      <label>Giới tính <span class="required">*</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="gender" value="Nam" required> Nam</label>
+        <label><input type="radio" name="gender" value="Nữ"> Nữ</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="class">Lớp <span class="required">*</span></label>
+      <input type="text" id="class" name="class" required>
+    </div>
+    <div class="form-group">
+      <label for="faculty">Khoa <span class="required">*</span></label>
+      <input type="text" id="faculty" name="faculty" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Số điện thoại <span class="required">*</span></label>
+      <input type="tel" id="phone" name="phone" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email <span class="required">*</span></label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Địa chỉ</label>
+      <textarea id="address" name="address" rows="2"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="photo">Ảnh đại diện <span class="required">*</span></label>
+      <div class="file-input-wrapper">
+        <input type="file" id="photo" name="photo" accept="image/*" onchange="updateFileName(this, 'photoFileName')" required>
+        <label for="photo" class="file-input-label">Chọn file</label>
+        <span id="photoFileName" class="file-name"></span>
+      </div>
+    </div>
   </div>
-</footer>
+  
+  <!-- Kinh nghiệm thi đấu -->
+  <div class="form-section">
+    <h2>Kinh nghiệm thi đấu</h2>
+    <div class="form-group">
+      <label>Bạn đã từng tham gia thi đấu thể thao trước đây chưa? <span class="required">*</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="previousExperience" value="Có" onchange="togglePreviousExperience(true)" required> Có</label>
+        <label><input type="radio" name="previousExperience" value="Không" onchange="togglePreviousExperience(false)"> Không</label>
+      </div>
+    </div>
+    
+    <div id="previousExperienceDetails" class="hidden">
+      <div class="form-group">
+        <label for="sportType">Môn thể thao</label>
+        <input type="text" id="sportType" name="sportType">
+      </div>
+      <div class="form-group">
+        <label for="competition">Giải đấu</label>
+        <input type="text" id="competition" name="competition">
+      </div>
+      <div class="form-group">
+        <label for="year">Năm tham gia</label>
+        <input type="number" id="year" name="year" min="2000" max="2025">
+      </div>
+      <div class="form-group">
+        <label for="achievement">Thành tích</label>
+        <input type="text" id="achievement" name="achievement">
+      </div>
+      <div class="form-group">
+        <label for="achievementPhoto">Ảnh chứng nhận thành tích (nếu có)</label>
+        <div class="file-input-wrapper">
+          <input type="file" id="achievementPhoto" name="achievementPhoto" accept="image/*" onchange="updateFileName(this, 'achievementPhotoFileName')">
+          <label for="achievementPhoto" class="file-input-label">Chọn file</label>
+          <span id="achievementPhotoFileName" class="file-name"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Đăng ký môn thi đấu -->
+  <div class="form-section">
+    <h2>Đăng ký môn thi đấu</h2>
+    <p>Vui lòng chọn tối đa 2 môn thi đấu mà bạn muốn tham gia:</p>
+    <p>Đã chọn: <span id="selectedCount">0</span>/2 môn</p>
+    
+    <div class="sports-container">
+      <!-- Bóng đá -->
+      <div class="sport-category">
+        <h3>Bóng đá</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="football-male" class="sport-checkbox" value="Bóng đá nam">
+          <label for="football-male">Bóng đá nam</label>
+          <div class="sub-options hidden" data-for="football-male">
+            <p>Vai trò trong đội:</p>
+            <div class="radio-group">
+              <label><input type="radio" name="football-male-role" value="Thủ môn"> Thủ môn</label>
+              <label><input type="radio" name="football-male-role" value="Hậu vệ"> Hậu vệ</label>
+              <label><input type="radio" name="football-male-role" value="Tiền vệ"> Tiền vệ</label>
+              <label><input type="radio" name="football-male-role" value="Tiền đạo"> Tiền đạo</label>
+            </div>
+          </div>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="football-female" class="sport-checkbox" value="Bóng đá nữ">
+          <label for="football-female">Bóng đá nữ</label>
+          <div class="sub-options hidden" data-for="football-female">
+            <p>Vai trò trong đội:</p>
+            <div class="radio-group">
+              <label><input type="radio" name="football-female-role" value="Thủ môn"> Thủ môn</label>
+              <label><input type="radio" name="football-female-role" value="Hậu vệ"> Hậu vệ</label>
+              <label><input type="radio" name="football-female-role" value="Tiền vệ"> Tiền vệ</label>
+              <label><input type="radio" name="football-female-role" value="Tiền đạo"> Tiền đạo</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bóng chuyền -->
+      <div class="sport-category">
+        <h3>Bóng chuyền</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="volleyball-male" class="sport-checkbox" value="Bóng chuyền nam">
+          <label for="volleyball-male">Bóng chuyền nam</label>
+          <div class="sub-options hidden" data-for="volleyball-male">
+            <p>Vai trò trong đội:</p>
+            <div class="radio-group">
+              <label><input type="radio" name="volleyball-male-role" value="Chuyền hai"> Chuyền hai</label>
+              <label><input type="radio" name="volleyball-male-role" value="Đối chuyền"> Đối chuyền</label>
+              <label><input type="radio" name="volleyball-male-role" value="Chủ công"> Chủ công</label>
+              <label><input type="radio" name="volleyball-male-role" value="Libero"> Libero</label>
+            </div>
+          </div>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="volleyball-female" class="sport-checkbox" value="Bóng chuyền nữ">
+          <label for="volleyball-female">Bóng chuyền nữ</label>
+          <div class="sub-options hidden" data-for="volleyball-female">
+            <p>Vai trò trong đội:</p>
+            <div class="radio-group">
+              <label><input type="radio" name="volleyball-female-role" value="Chuyền hai"> Chuyền hai</label>
+              <label><input type="radio" name="volleyball-female-role" value="Đối chuyền"> Đối chuyền</label>
+              <label><input type="radio" name="volleyball-female-role" value="Chủ công"> Chủ công</label>
+              <label><input type="radio" name="volleyball-female-role" value="Libero"> Libero</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bóng rổ -->
+      <div class="sport-category">
+        <h3>Bóng rổ</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="basketball-male" class="sport-checkbox" value="Bóng rổ nam">
+          <label for="basketball-male">Bóng rổ nam</label>
+          <div class="sub-options hidden" data-for="basketball-male">
+            <p>Vai trò trong đội:</p>
+            <div class="radio-group">
+              <label><input type="radio" name="basketball-male-role" value="Point Guard"> Point Guard</label>
+              <label><input type="radio" name="basketball-male-role" value="Shooting Guard"> Shooting Guard</label>
+              <label><input type="radio" name="basketball-male-role" value="Small Forward"> Small Forward</label>
+              <label><input type="radio" name="basketball-male-role" value="Power Forward"> Power Forward</label>
+              <label><input type="radio" name="basketball-male-role" value="Center"> Center</label>
+            </div>
+          </div>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="basketball-female" class="sport-checkbox" value="Bóng rổ nữ">
+          <label for="basketball-female">Bóng rổ nữ</label>
+          <div class="sub-options hidden" data-for="basketball-female">
+            <p>Vai trò trong đội:</p>
+            <div class="radio-group">
+              <label><input type="radio" name="basketball-female-role" value="Point Guard"> Point Guard</label>
+              <label><input type="radio" name="basketball-female-role" value="Shooting Guard"> Shooting Guard</label>
+              <label><input type="radio" name="basketball-female-role" value="Small Forward"> Small Forward</label>
+              <label><input type="radio" name="basketball-female-role" value="Power Forward"> Power Forward</label>
+              <label><input type="radio" name="basketball-female-role" value="Center"> Center</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bóng bàn -->
+      <div class="sport-category">
+        <h3>Bóng bàn</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="tabletennis-single" class="sport-checkbox" value="Bóng bàn đơn">
+          <label for="tabletennis-single">Bóng bàn đơn</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="tabletennis-double" class="sport-checkbox" value="Bóng bàn đôi">
+          <label for="tabletennis-double">Bóng bàn đôi</label>
+          <div class="sub-options hidden" data-for="tabletennis-double">
+            <p>Thông tin đối tác:</p>
+            <div class="form-group">
+              <label for="tabletennis-partner">Họ tên đối tác</label>
+              <input type="text" id="tabletennis-partner" name="tabletennis-partner">
+            </div>
+            <div class="form-group">
+              <label for="tabletennis-partner-id">MSSV đối tác</label>
+              <input type="text" id="tabletennis-partner-id" name="tabletennis-partner-id">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cầu lông -->
+      <div class="sport-category">
+        <h3>Cầu lông</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="badminton-single" class="sport-checkbox" value="Cầu lông đơn">
+          <label for="badminton-single">Cầu lông đơn</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="badminton-double" class="sport-checkbox" value="Cầu lông đôi">
+          <label for="badminton-double">Cầu lông đôi</label>
+          <div class="sub-options hidden" data-for="badminton-double">
+            <p>Thông tin đối tác:</p>
+            <div class="form-group">
+              <label for="badminton-partner">Họ tên đối tác</label>
+              <input type="text" id="badminton-partner" name="badminton-partner">
+            </div>
+            <div class="form-group">
+              <label for="badminton-partner-id">MSSV đối tác</label>
+              <input type="text" id="badminton-partner-id" name="badminton-partner-id">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Chạy -->
+      <div class="sport-category">
+        <h3>Chạy</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="running-100m" class="sport-checkbox" value="Chạy 100m">
+          <label for="running-100m">Chạy 100m</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="running-200m" class="sport-checkbox" value="Chạy 200m">
+          <label for="running-200m">Chạy 200m</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="running-400m" class="sport-checkbox" value="Chạy 400m">
+          <label for="running-400m">Chạy 400m</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="running-800m" class="sport-checkbox" value="Chạy 800m">
+          <label for="running-800m">Chạy 800m</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="running-1500m" class="sport-checkbox" value="Chạy 1500m">
+          <label for="running-1500m">Chạy 1500m</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="running-relay" class="sport-checkbox" value="Chạy tiếp sức">
+          <label for="running-relay">Chạy tiếp sức</label>
+        </div>
+      </div>
+      
+      <!-- Bơi -->
+      <div class="sport-category">
+        <h3>Bơi</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="swimming-freestyle" class="sport-checkbox" value="Bơi tự do">
+          <label for="swimming-freestyle">Bơi tự do</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="swimming-breaststroke" class="sport-checkbox" value="Bơi ếch">
+          <label for="swimming-breaststroke">Bơi ếch</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="swimming-backstroke" class="sport-checkbox" value="Bơi ngửa">
+          <label for="swimming-backstroke">Bơi ngửa</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="swimming-butterfly" class="sport-checkbox" value="Bơi bướm">
+          <label for="swimming-butterfly">Bơi bướm</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="swimming-medley" class="sport-checkbox" value="Bơi hỗn hợp">
+          <label for="swimming-medley">Bơi hỗn hợp</label>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="swimming-relay" class="sport-checkbox" value="Bơi tiếp sức">
+          <label for="swimming-relay">Bơi tiếp sức</label>
+        </div>
+      </div>
+      
+      <!-- Kéo co -->
+      <div class="sport-category">
+        <h3>Kéo co</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="tugofwar-male" class="sport-checkbox" value="Kéo co nam">
+          <label for="tugofwar-male">Kéo co nam</label>
+          <div class="sub-options hidden" data-for="tugofwar-male">
+            <div class="form-group">
+              <label for="tugofwar-male-weight">Cân nặng (kg)</label>
+              <input type="number" id="tugofwar-male-weight" name="tugofwar-male-weight" min="40" max="150" step="0.1">
+            </div>
+          </div>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="tugofwar-female" class="sport-checkbox" value="Kéo co nữ">
+          <label for="tugofwar-female">Kéo co nữ</label>
+          <div class="sub-options hidden" data-for="tugofwar-female">
+            <div class="form-group">
+              <label for="tugofwar-female-weight">Cân nặng (kg)</label>
+              <input type="number" id="tugofwar-female-weight" name="tugofwar-female-weight" min="40" max="150" step="0.1">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Đẩy gậy -->
+      <div class="sport-category">
+        <h3>Đẩy gậy</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="armwrestling-male" class="sport-checkbox" value="Đẩy gậy nam">
+          <label for="armwrestling-male">Đẩy gậy nam</label>
+          <div class="sub-options hidden" data-for="armwrestling-male">
+            <div class="form-group">
+              <label for="armwrestling-male-weight">Cân nặng (kg)</label>
+              <input type="number" id="armwrestling-male-weight" name="armwrestling-male-weight" min="40" max="150" step="0.1">
+            </div>
+            <p>Hạng cân:</p>
+            <div class="radio-group">
+              <label><input type="radio" name="armwrestling-male-weight-class" value="Dưới 60kg"> Dưới 60kg</label>
+              <label><input type="radio" name="armwrestling-male-weight-class" value="60-70kg"> 60-70kg</label>
+              <label><input type="radio" name="armwrestling-male-weight-class" value="70-80kg"> 70-80kg</label>
+              <label><input type="radio" name="armwrestling-male-weight-class" value="Trên 80kg"> Trên 80kg</label>
+            </div>
+          </div>
+        </div>
+        <div class="sport-option">
+          <input type="checkbox" id="armwrestling-female" class="sport-checkbox" value="Đẩy gậy nữ">
+          <label for="armwrestling-female">Đẩy gậy nữ</label>
+          <div class="sub-options hidden" data-for="armwrestling-female">
+            <div class="form-group">
+              <label for="armwrestling-female-weight">Cân nặng (kg)</label>
+              <input type="number" id="armwrestling-female-weight" name="armwrestling-female-weight" min="40" max="150" step="0.1">
+            </div>
+            <p>Hạng cân:</p>
+            <div class="radio-group">
+              <label><input type="radio" name="armwrestling-female-weight-class" value="Dưới 50kg"> Dưới 50kg</label>
+              <label><input type="radio" name="armwrestling-female-weight-class" value="50-60kg"> 50-60kg</label>
+              <label><input type="radio" name="armwrestling-female-weight-class" value="Trên 60kg"> Trên 60kg</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cờ vua -->
+      <div class="sport-category">
+        <h3>Cờ vua</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="chess" class="sport-checkbox" value="Cờ vua">
+          <label for="chess">Cờ vua</label>
+        </div>
+      </div>
+      
+      <!-- Esports -->
+      <div class="sport-category">
+        <h3>Esports</h3>
+        <div class="sport-option">
+          <input type="checkbox" id="esports" class="sport-checkbox" value="Esports">
+          <label for="esports">Esports</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Cam kết -->
+  <div class="form-section">
+    <h2>Cam kết</h2>
+    <div class="form-group checkbox-group">
+      <label>
+        <input type="checkbox" id="agreement1" name="agreement1" required>
+        Tôi cam kết những thông tin trên là chính xác và đầy đủ.
+      </label>
+    </div>
+    <div class="form-group checkbox-group">
+      <label>
+        <input type="checkbox" id="agreement2" name="agreement2" required>
+        Tôi đồng ý tuân thủ các quy định của Ban tổ chức giải đấu.
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="signature">Chữ ký (ghi rõ họ tên) <span class="required">*</span></label>
+      <input type="text" id="signature" name="signature" required>
+    </div>
+  </div>
+  
+  <!-- Thông tin bổ sung -->
+  <div class="form-section">
+    <h2>Thông tin bổ sung</h2>
+    <div class="form-group">
+      <label for="additionalInfo">Thông tin khác (nếu có)</label>
+      <textarea id="additionalInfo" name="additionalInfo" rows="3"></textarea>
+    </div>
+  </div>
+  
+  <!-- Nút gửi và reset -->
+  <div class="form-actions">
+    <button type="reset" id="resetBtn" class="btn btn-secondary"><i class="fas fa-undo"></i> Làm mới</button>
+    <button type="submit" id="submitBtn" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Gửi đăng ký</button>
+  </div>
+  
+  <!-- Thông báo thành công -->
+  <div id="successMessage" class="success-message hidden">
+    <div class="success-content">
+      <i class="fas fa-check-circle"></i>
+      <h3>Đăng ký thành công!</h3>
+      <p>Cảm ơn bạn đã đăng ký tham gia giải đấu thể thao Duy Tân 2025.</p>
+      <p>Ban tổ chức sẽ liên hệ với bạn qua email hoặc số điện thoại đã đăng ký.</p>
+      <button id="closeSuccessBtn" class="btn btn-primary">Đóng</button>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>Designed & Developed by <a href="https://truongdat.glitch.me/" target="_blank" rel="noopener noreferrer">truongdat</a></p>
+    </div>
+  </footer>
+  
     <script src="script.js"></script>
 </body>
 </html>
