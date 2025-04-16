@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const IMGBB_API_KEY = "069cd353e3b761bf7f4930607e1c1674"
   const IMGBB_UPLOAD_URL = "https://api.imgbb.com/1/upload"
   // Thay thế URL này bằng URL của Google Form của bạn
-  const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScreXkF3Ry8TCxiHnf1xIAgnsAjJZt7BE5k_burORYWr93Giw/formResponse"
+  const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse"
 
   // Tạo các biểu tượng thể thao nổi
   const sportsIcons = document.getElementById("sportsIcons")
@@ -118,6 +118,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
+      // Cập nhật giá trị "Có" hoặc "Không" cho trường ẩn tương ứng
+      const hiddenValueField = document.getElementById(`${this.id}-value`)
+      if (hiddenValueField) {
+        hiddenValueField.value = this.checked ? "Có" : "Không"
+      }
+
       updateProgress()
     })
   })
@@ -225,6 +231,14 @@ document.addEventListener("DOMContentLoaded", () => {
     formDataForGoogle.append(`entry.${getGoogleFormFieldId("selectedSports")}`, sportsArray.join(", "))
 
     // Xử lý thông tin chi tiết cho từng môn thể thao
+    // Thêm tất cả các giá trị "Có" hoặc "Không" cho mỗi môn thể thao
+    const sportValueFields = document.querySelectorAll('input[id$="-value"]')
+    sportValueFields.forEach((field) => {
+      const sportId = field.id.replace("-value", "")
+      formDataForGoogle.append(`entry.${getGoogleFormFieldId(sportId)}`, field.value)
+    })
+
+    // Xử lý thông tin chi tiết cho từng môn thể thao
     selectedSports.forEach((sport) => {
       const sportId = sport.id
       const sportName = sport.value
@@ -266,20 +280,78 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Xử lý thông tin đối tác cho các môn đôi
-      if (["tabletennis-double", "badminton-double"].includes(sportId)) {
-        const partnerId = sportId.split("-")[0]
-        const partnerName = document.getElementById(`${partnerId}-partner`)?.value
-        const partnerStudentId = document.getElementById(`${partnerId}-partner-id`)?.value
+      const doublesSports = [
+        "tabletennis-mixed",
+        "badminton-female-double",
+        "badminton-mixed",
+        "pickleball-male",
+        "pickleball-female",
+        "pickleball-mixed",
+      ]
 
+      if (doublesSports.includes(sportId)) {
+        // Xác định tiền tố cho ID của trường đối tác
+        let partnerId
+        if (sportId.includes("tabletennis")) {
+          partnerId = "tabletennis"
+        } else if (sportId.includes("badminton")) {
+          partnerId = sportId
+        } else if (sportId.includes("pickleball")) {
+          partnerId = sportId
+        }
+
+        // Lấy tên đối tác
+        const partnerName = document.getElementById(`${partnerId}-partner`)?.value
         if (partnerName) {
           formDataForGoogle.append(`entry.${getGoogleFormFieldId(`${sportId}-partner-name`)}`, partnerName)
         }
 
+        // Lấy MSSV đối tác
+        const partnerStudentId = document.getElementById(`${partnerId}-partner-id`)?.value
         if (partnerStudentId) {
           formDataForGoogle.append(`entry.${getGoogleFormFieldId(`${sportId}-partner-id`)}`, partnerStudentId)
         }
       }
     })
+
+    // Xử lý thông tin Liên Quân Mobile
+    if (document.getElementById("aov").checked) {
+      const aovInfo = {
+        "aov-team-name": formData.get("aov-team-name"),
+        "aov-rank": formData.get("aov-rank"),
+      }
+
+      for (const [key, value] of Object.entries(aovInfo)) {
+        if (value) {
+          formDataForGoogle.append(`entry.${getGoogleFormFieldId(key)}`, value)
+        }
+      }
+
+      // Xử lý ảnh minh chứng rank
+      const rankProofFile = document.getElementById("aov-rank-proof").files[0]
+      if (rankProofFile) {
+        const rankProofUrl = await uploadImageToImgBB(rankProofFile)
+        if (rankProofUrl) {
+          formDataForGoogle.append(`entry.${getGoogleFormFieldId("aov-rank-proof-url")}`, rankProofUrl)
+        }
+      }
+
+      // Xử lý thông tin thành viên team
+      let teamMembersInfo = ""
+      for (let i = 1; i <= 6; i++) {
+        const memberName = formData.get(`aov-member-${i}-name`)
+        const memberId = formData.get(`aov-member-${i}-id`)
+        const memberRole = formData.get(`aov-member-${i}-role`)
+
+        if (memberName || memberId || memberRole) {
+          teamMembersInfo += `Thành viên ${i}: ${memberName || ""} - ${memberId || ""} - ${memberRole || ""}\n`
+        }
+      }
+
+      if (teamMembersInfo) {
+        formDataForGoogle.append(`entry.${getGoogleFormFieldId("aov-team-members")}`, teamMembersInfo)
+      }
+    }
 
     // Thông tin cam kết
     const agreement1 = document.getElementById("agreement1").checked ? "Đồng ý" : "Không đồng ý"
@@ -350,10 +422,18 @@ document.addEventListener("DOMContentLoaded", () => {
       "basketball-female-role": "298934308",
 
       // Thông tin đối tác cho các môn đôi
-      "tabletennis-double-partner-name": "1566216721",
-      "tabletennis-double-partner-id": "1284979063",
-      "badminton-double-partner-name": "2075279299",
-      "badminton-double-partner-id": "462594385",
+      "tabletennis-mixed-partner-name": "1566216721",
+      "tabletennis-mixed-partner-id": "1284979063",
+      "badminton-female-double-partner-name": "2075279299",
+      "badminton-female-double-partner-id": "462594385",
+      "badminton-mixed-partner-name": "1566216722",
+      "badminton-mixed-partner-id": "1284979064",
+      "pickleball-male-partner-name": "2075279300",
+      "pickleball-male-partner-id": "462594386",
+      "pickleball-female-partner-name": "1566216723",
+      "pickleball-female-partner-id": "1284979065",
+      "pickleball-mixed-partner-name": "2075279301",
+      "pickleball-mixed-partner-id": "462594387",
 
       // Thông tin cam kết
       agreement1: "377786695",
@@ -363,54 +443,52 @@ document.addEventListener("DOMContentLoaded", () => {
       // Thông tin bổ sung
       additionalInfo: "1693050404",
 
-      // Các môn thể thao cụ thể
+      // Các môn thể thao cụ thể (Có/Không)
       "football-male": "680313214",
       "football-female": "1970594183",
       "volleyball-male": "916784086",
       "volleyball-female": "837954294",
       "basketball-male": "1922601745",
       "basketball-female": "1353616254",
-      "tabletennis-single": "128040335",
-      "tabletennis-double": "2065096774",
-      "badminton-single": "797453820",
-      "badminton-double": "70792383",
-      "running-100m": "1635967876",
-      "running-200m": "2104612627",
-      "running-400m": "1854128484",
-      "running-800m": "594067191",
-      "running-1500m": "1341604609",
-      "running-relay": "499085329",
-      "swimming-freestyle": "1389512352",
-      "swimming-breaststroke": "81178371",
-      "swimming-backstroke": "660488411",
-      "swimming-butterfly": "1333431401",
-      "swimming-medley": "1091290327",
-      "swimming-relay": "588971903",
       "tugofwar-male": "479448296",
       "tugofwar-female": "755046850",
+      "sprint-male": "1635967876", // Chạy ngắn 100m nam
+      "sprint-female": "2104612627", // Chạy ngắn 100m nữ
+      "endurance-male": "1854128484", // Chạy bền 1500m nam
+      "endurance-female": "594067191", // Chạy bền 800m nữ
+      "longjump-male": "1341604609", // Nhảy xa nam
+      "longjump-female": "499085329", // Nhảy xa nữ
       "armwrestling-male": "2013345739",
       "armwrestling-female": "644917825",
-      chess: "2009299746",
-      esports: "1760153496",
+      "badminton-female-single": "1389512352",
+      "badminton-female-double": "81178371",
+      "badminton-mixed": "660488411",
+      "chess-male": "1333431401", // Cờ vua nam
+      "chess-female": "1091290327", // Cờ vua nữ
+      "xiangqi-male": "588971903", // Cờ tướng nam
+      "xiangqi-female": "2009299746", // Cờ tướng nữ
+      "tabletennis-male": "1760153496", // Bóng bàn đơn nam
+      "tabletennis-female": "539259020", // Bóng bàn đơn nữ
+      "tabletennis-mixed": "1416500277", // Bóng bàn đôi nam-nữ
+      "pickleball-male": "37001335", // Pickleball đôi nam
+      "pickleball-female": "1395738826", // Pickleball đôi nữ
+      "pickleball-mixed": "1245264040", // Pickleball đôi nam-nữ
+      aov: "201643674", // Liên Quân Mobile
+
+      // Thông tin Liên Quân Mobile
+      "aov-team-name": "212317365",
+      "aov-rank": "1639114313",
+      "aov-rank-proof-url": "1853155342",
+      "aov-team-members": "1364686283",
 
       // Các trường bổ sung (nếu cần)
-      "additional-field-1": "539259020",
-      "additional-field-2": "1416500277",
-      "additional-field-3": "37001335",
-      "additional-field-4": "1395738826",
-      "additional-field-5": "1245264040",
-      "additional-field-6": "201643674",
-      "additional-field-7": "212317365",
-      "additional-field-8": "1639114313",
-      "additional-field-9": "1853155342",
-      "additional-field-10": "1364686283",
-      "additional-field-11": "302201637",
-      "additional-field-12": "1686966385",
-      "additional-field-13": "1566011232",
-      "additional-field-14": "1236929183",
-      "additional-field-15": "1664691521",
-      "additional-field-16": "655067707",
-      "additional-field-17": "1999119079",
+      "additional-field-1": "302201637",
+      "additional-field-2": "1686966385",
+      "additional-field-3": "1566011232",
+      "additional-field-4": "1236929183",
+      "additional-field-5": "1664691521",
+      "additional-field-6": "655067707",
+      "additional-field-7": "1999119079",
     }
 
     return fieldMapping[fieldName] || "0" // Trả về '0' nếu không tìm thấy mapping
@@ -503,6 +581,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Reset progress bar
     progressBar.style.width = "0%"
     progressPercent.textContent = "0%"
+
+    // Reset hidden value fields
+    const hiddenValueFields = document.querySelectorAll('input[id$="-value"]')
+    hiddenValueFields.forEach((field) => {
+      field.value = "Không"
+    })
   })
 
   // Reset button
@@ -522,6 +606,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Reset progress bar
     progressBar.style.width = "0%"
     progressPercent.textContent = "0%"
+
+    // Reset hidden value fields
+    const hiddenValueFields = document.querySelectorAll('input[id$="-value"]')
+    hiddenValueFields.forEach((field) => {
+      field.value = "Không"
+    })
   })
 
   // Form validation
@@ -610,12 +700,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Check partner information for doubles sports
-    const doublesSports = ["tabletennis-double", "badminton-double"]
+    const doublesSports = [
+      "tabletennis-mixed",
+      "badminton-female-double",
+      "badminton-mixed",
+      "pickleball-male",
+      "pickleball-female",
+      "pickleball-mixed",
+    ]
 
     for (const sportId of doublesSports) {
       const sportCheckbox = document.getElementById(sportId)
       if (sportCheckbox && sportCheckbox.checked) {
-        const partnerId = sportId.split("-")[0]
+        let partnerId
+        if (sportId.includes("tabletennis")) {
+          partnerId = "tabletennis"
+        } else if (sportId.includes("badminton")) {
+          partnerId = sportId
+        } else if (sportId.includes("pickleball")) {
+          partnerId = sportId
+        }
+
         const partnerName = document.getElementById(`${partnerId}-partner`)
         const partnerStudentId = document.getElementById(`${partnerId}-partner-id`)
 
